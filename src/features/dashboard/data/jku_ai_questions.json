@@ -1,0 +1,3668 @@
+[
+  {
+    "id": "u6_starcraft_complexity_1",
+    "unit": 6,
+    "question": "Why is the real-time strategy game StarCraft II significantly more challenging to solve using reinforcement learning than board games like Go?",
+    "options": [
+      "Go has a much larger action space (~10^50 action combinations) than StarCraft II.",
+      "StarCraft II is a perfect information game where the entire map is visible, requiring massive search trees.",
+      "StarCraft II features imperfect information due to the fog of war, real-time play, and an immense action space of ~10^50 combinations.",
+      "Search algorithms like Monte Carlo Tree Search cannot be used for multiplayer environments."
+    ],
+    "correct_index": 2,
+    "explanation": "StarCraft II introduces massive complexity: imperfect information (fog of war requiring active scouting/memory), real-time decision making (no turn breaks), and a huge action space (~10^50 combinations at each step), compared to Go which is perfect information and has ~250 actions per step."
+  },
+  {
+    "id": "u3_gating_lstm_1",
+    "unit": 3,
+    "question": "How does gating in an LSTM cell select important information from a feature vector?",
+    "options": [
+      "By taking the average of all elements and applying a threshold.",
+      "By element-wise multiplication with a gate vector whose values are between 0 (closed gate) and 1 (open gate).",
+      "By element-wise addition of a bias vector with negative elements.",
+      "By applying a ReLU activation to zero out negative features."
+    ],
+    "correct_index": 1,
+    "explanation": "LSTMs use sigmoid-activated gates. A sigmoid output lies in [0, 1]. Element-wise multiplying a feature vector by this gate vector scales the features: 0 means blocked/forgotten, 1 means fully passed."
+  },
+  {
+    "id": "u3_lstm_forget_1",
+    "unit": 3,
+    "question": "What is the specific role of the forget gate in a modern LSTM cell?",
+    "options": [
+      "It deletes weights that are close to zero to make the network sparse.",
+      "It determines what proportion of the previous cell state c_{t-1} should be kept or forgotten.",
+      "It resets the hidden state h_t to 0 if a period/punctuation token is encountered.",
+      "It acts as a dropout mask on the inputs."
+    ],
+    "correct_index": 1,
+    "explanation": "The forget gate output f_t lies in [0, 1] and is multiplied element-wise by the previous cell state c_{t-1}. This controls what part of the accumulated memory should be discarded."
+  },
+  {
+    "id": "u3_seq_features_1",
+    "unit": 3,
+    "question": "Consider sequence data s of length T with D features at every timestep. What is true regarding different samples in a dataset?",
+    "options": [
+      "The sequence length T must be constant, but the feature dimension D can vary.",
+      "The feature dimension D is constant between samples, but the sequence length T can vary.",
+      "Both T and D must be completely identical for all samples without any padding.",
+      "Both T and D can vary dynamically within a single sample."
+    ],
+    "correct_index": 1,
+    "explanation": "The feature dimension D (e.g., word embedding size, number of sensor channels) is constant across the dataset. However, different sequences can have different lengths T (e.g., sentences of different lengths)."
+  },
+  {
+    "id": "u1_softmax_1",
+    "unit": 1,
+    "question": "Which of the following statements about the Softmax function is correct?",
+    "options": [
+      "It is a generalization of the tanh function.",
+      "It can only be used if there are strictly more than 2 classes.",
+      "It is a method to compute probabilities, scaling outputs to sum to 1.",
+      "It can only be applied to regression tasks."
+    ],
+    "correct_index": 2,
+    "explanation": "Softmax is used in classification to convert raw network outputs (logits) into a probability distribution over classes, where each probability is in (0, 1) and they sum to 1."
+  },
+  {
+    "id": "u1_softmax_2",
+    "unit": 1,
+    "question": "What is the formula for the Softmax function for class i out of K classes?",
+    "options": [
+      "exp(z_i) / sum_{j=1}^K exp(z_j)",
+      "1 / (1 + exp(-z_i))",
+      "tanh(z_i)",
+      "max(0, z_i)"
+    ],
+    "correct_index": 0,
+    "explanation": "The softmax formula is exp(z_i) divided by the sum of exp(z_j) for all classes j from 1 to K. This normalizes the outputs into a probability distribution."
+  },
+  {
+    "id": "u2_dropout_capacity_1",
+    "unit": 2,
+    "question": "What is the effect of Dropout on the training and test error rates of a neural network?",
+    "options": [
+      "It decreases the training error and increases the test error.",
+      "It increases the training error (as it introduces noise and acts as a capacity constraint), but reduces generalization error (test error) by mitigating overfitting.",
+      "It guarantees that both training error and test error will reach 0 within 5 epochs.",
+      "It has no effect on training error but causes the test error to fluctuate randomly."
+    ],
+    "correct_index": 1,
+    "explanation": "Dropout prevents units from co-adapting too much. By deactivating units, it makes it harder for the model to fit the training data (increasing training loss), but forces it to learn robust, generalizable features, reducing test error."
+  },
+  {
+    "id": "u6_eps_greedy_1",
+    "unit": 6,
+    "question": "In epsilon-greedy exploration, what does the parameter epsilon control?",
+    "options": [
+      "The learning rate of the Q-value updates.",
+      "The probability of choosing a random exploratory action instead of the greedy action (exploitation).",
+      "The discount factor applied to future rewards.",
+      "The temperature scaling in the softmax policy."
+    ],
+    "correct_index": 1,
+    "explanation": "Epsilon-greedy selects a random action with probability epsilon (exploration) and the action with the highest Q-value with probability 1-epsilon (exploitation)."
+  },
+  {
+    "id": "u5_molgraph_1",
+    "unit": 5,
+    "question": "Which of the following is correct regarding molecular graphs?",
+    "options": [
+      "They are directed graphs where edges represent the flow of electrons.",
+      "They have labeled nodes (representing atoms) and labeled edges (representing bond types), but they cannot encode 3D spatial conformation.",
+      "They explicitly encode the exact 3D spatial coordinates of each atom in space.",
+      "They are only useful for represent linear organic chains, not cyclic structures."
+    ],
+    "correct_index": 1,
+    "explanation": "Molecular graphs represent topological connectivity (atoms as nodes, bonds as edges). They are undirected and do not contain 3D conformation (spatial coordinates) of the molecule."
+  },
+  {
+    "id": "u3_lstm_cec_1",
+    "unit": 3,
+    "question": "In LSTM architectures, what represents the Constant Error Carousel (CEC) and why does it prevent vanishing gradients?",
+    "options": [
+      "The output gate, because it normalizes gradients using tanh.",
+      "The linear self-loop of the cell state, which has a constant gradient of 1 (when forget gate is 1) that allows error signals to flow back indefinitely without decay.",
+      "The candidate cell state, which is computed using ReLU.",
+      "The hidden state projection matrix, which is initialized as an identity matrix."
+    ],
+    "correct_index": 1,
+    "explanation": "The Constant Error Carousel (CEC) is the central element of LSTM. It is a linear self-connection of the cell state: c_t = f_t * c_{t-1} + i_t * c_tilde_t. If f_t = 1, error signals propagate back in time without exponential decay."
+  },
+  {
+    "id": "u6_deep_q_2",
+    "unit": 6,
+    "question": "When is Deep Q-learning (DQN) preferred over tabular Q-learning?",
+    "options": [
+      "When the state-action space is small and can fit entirely in memory.",
+      "When the state-action space is very large or continuous, making a table representation impossible.",
+      "When the environment has no transition probabilities.",
+      "When the discount factor gamma is set to 0."
+    ],
+    "correct_index": 1,
+    "explanation": "Tabular Q-learning requires storing a value for every state-action pair. If states are continuous (like image pixels in Atari) or massive, function approximation (DQN) is required to generalize across states."
+  },
+  {
+    "id": "u5_vae_generation_1",
+    "unit": 5,
+    "question": "How do Variational Autoencoders (VAEs) generate new molecular structures in cheminformatics?",
+    "options": [
+      "They mutate SMILES strings randomly until they represent valid molecules.",
+      "They map discrete molecular representations into a continuous latent space, and then sample new latent vectors to decode them into new candidate molecules.",
+      "They use Monte Carlo Tree Search to plan synthesis paths.",
+      "They predict the 3D folding of the molecule based on GDT score."
+    ],
+    "correct_index": 1,
+    "explanation": "VAEs learn a continuous latent space representation of molecules. By sampling vectors from this latent space (usually assumed Gaussian) and feeding them to the decoder, new valid chemical structures can be generated."
+  },
+  {
+    "id": "u1_dim_red_1",
+    "unit": 1,
+    "question": "Which statement is true about dimensionality reduction techniques (such as PCA or t-SNE)?",
+    "options": [
+      "If the data is high-dimensional, dimensionality reduction must be applied before any model training can occur.",
+      "Information is inevitably lost when downprojecting high-dimensional data (e.g., to 2 dimensions) for visualization.",
+      "k-means is the most popular linear dimensionality reduction algorithm.",
+      "Dimensionality reduction techniques are only useful when data has no correlations."
+    ],
+    "correct_index": 1,
+    "explanation": "Downprojecting high-dimensional data to a lower-dimensional space (like 2D or 3D) causes loss of information because we cannot represent all variance/relationships in a lower dimension."
+  },
+  {
+    "id": "u6_q_update_1",
+    "unit": 6,
+    "question": "Consider the Q-learning update: Q(s,a) = (1-alpha)*Q(s,a) + alpha*(r + gamma*max_a Q(s',a')). What does the parameter alpha represent?",
+    "options": [
+      "The discount factor.",
+      "The learning rate.",
+      "The exploration probability.",
+      "The temperature parameter."
+    ],
+    "correct_index": 1,
+    "explanation": "Alpha is the learning rate, which controls the step size of Q-value updates. It blends the old estimate with the new temporal difference target."
+  },
+  {
+    "id": "u1_dbscan_noise_1",
+    "unit": 1,
+    "question": "In DBSCAN (Density-Based Spatial Clustering of Applications with Noise), what characterizes a 'noise' point?",
+    "options": [
+      "It has fewer than MinPts within its Epsilon-neighborhood and is not reachable from any core point.",
+      "It has exactly MinPts within its Epsilon-neighborhood but is located on the boundary of the dataset.",
+      "It is reachable from a core point but has fewer than MinPts in its neighborhood.",
+      "It is a cluster centroid that contains outliers from other clusters."
+    ],
+    "correct_index": 0,
+    "explanation": "DBSCAN classifies points as core, border, or noise. A noise point is any point that does not satisfy the density requirement to be a core point (fewer than MinPts within Epsilon) and is not close/reachable from any core point."
+  },
+  {
+    "id": "u6_discount_gamma_1",
+    "unit": 6,
+    "question": "What is the effect of setting the discount factor gamma = 0 in reinforcement learning value/Q-value updates?",
+    "options": [
+      "The agent completely ignores future rewards (myopic behavior) and only optimizes for immediate rewards.",
+      "The agent values future rewards infinitely, causing Q-values to diverge.",
+      "The learning rate becomes 0, preventing updates.",
+      "The policy becomes completely random."
+    ],
+    "correct_index": 0,
+    "explanation": "The discount factor gamma in [0, 1] determines the present value of future rewards. Setting gamma = 0 reduces the target to immediate reward r_t + 0. The agent behaves short-sightedly (myopically)."
+  },
+  {
+    "id": "u3_rnn_output_size_1",
+    "unit": 3,
+    "question": "Assume you have a sequence of 8 elements, where each element has 10 features. If you feed this sequence into a standard, single-layer RNN with a hidden state size of 6, what is the size of the first RNN output?",
+    "options": [
+      "8",
+      "10",
+      "6",
+      "48"
+    ],
+    "correct_index": 2,
+    "explanation": "In an RNN, the output at each timestep is the hidden state (or a linear projection of it). Since the hidden state size is 6, the first output has size 6."
+  },
+  {
+    "id": "u6_grid_2",
+    "unit": 6,
+    "question": "In the 5x5 grid navigation task (step reward -2, target +15), what can happen if the agent follows a bad policy?",
+    "options": [
+      "The agent is guaranteed to reach the target in at most 100 steps.",
+      "The agent might get stuck in loops and never reach the target destination.",
+      "The agent will accumulate positive reward by visiting the corners.",
+      "The maximum reward of any policy will be positive."
+    ],
+    "correct_index": 1,
+    "explanation": "A bad policy can lead the agent into infinite loops or cause it to hit walls repeatedly, meaning it may never reach the target destination."
+  },
+  {
+    "id": "u3_rnn_weights_2",
+    "unit": 3,
+    "question": "How does the size of the RNN weight matrices relate to the sequence length?",
+    "options": [
+      "It is completely independent of the sequence length.",
+      "It increases with the sequence length.",
+      "It is determined dynamically at runtime based on the sequence length.",
+      "It is proportional to the number of timesteps unrolled."
+    ],
+    "correct_index": 0,
+    "explanation": "Because weights are shared across time steps, the weight matrix dimensions depend only on the input feature size and hidden state size, not the length of the sequence."
+  },
+  {
+    "id": "u2_l2_reg_1",
+    "unit": 2,
+    "question": "L2 regularization (weight decay) is mathematically formulated by adding which term to the loss function L?",
+    "options": [
+      "lambda * sum_i |w_i|",
+      "lambda * sum_i w_i^2",
+      "lambda * max_i |w_i|",
+      "lambda * sum_i log(w_i)"
+    ],
+    "correct_index": 1,
+    "explanation": "L2 regularization adds the sum of squared weights (L2 norm) scaled by lambda/2 to the loss function, which penalizes large weights."
+  },
+  {
+    "id": "u5_generative_1",
+    "unit": 5,
+    "question": "Which architectures/techniques can be used for generative molecular design in drug discovery?",
+    "options": [
+      "Standard CNNs are the primary molecular generator architecture.",
+      "Reinforcement Learning (RL), Variational Autoencoders (VAEs), and Generative Adversarial Networks (GANs) can generate new molecular structures.",
+      "Supervised CNN property predictors are used to generate molecules from scratch.",
+      "Only AlphaFold is capable of generating small chemical molecules."
+    ],
+    "correct_index": 1,
+    "explanation": "Generative architectures like VAEs, GANs, and RL agents are used to generate novel molecular graphs or SMILES strings. Standard CNNs are discriminative (used for classification/regression of properties)."
+  },
+  {
+    "id": "u4_embedding_1",
+    "unit": 4,
+    "question": "In the context of language models, which of the following is true about word embeddings?",
+    "options": [
+      "An embedding contains the frequency of a word occurring in a text corpus.",
+      "The encoder part of a language model is closely related to a word embedding (mapping token IDs to dense vectors).",
+      "Elements in a word embedding vector are not allowed to have any correlation with each other.",
+      "An embedding is a direct mapping of a word to its exact synonyms."
+    ],
+    "correct_index": 1,
+    "explanation": "Word embeddings map discrete token IDs to dense vectors in a continuous space. The embedding layer acts as the encoder's first step, translating words into representations."
+  },
+  {
+    "id": "u4_rnn_lm_1",
+    "unit": 4,
+    "question": "How is loss typically calculated and measured in RNN language models?",
+    "options": [
+      "A loss is calculated only at the very end of the sequence using mean squared error.",
+      "At each position in a sequence, a loss is calculated based on the prediction for the next word and the true next word, measured via negative log-likelihood.",
+      "The loss is calculated by comparing hidden states of different sequences.",
+      "Loss is measured using L1 regularization on the embeddings."
+    ],
+    "correct_index": 1,
+    "explanation": "Language modeling is treated as a multi-class classification task at each token position. The network predicts the next token, and the cross-entropy loss (negative log-likelihood) is computed and averaged across all sequence steps."
+  },
+  {
+    "id": "u3_gating_lstm_2",
+    "unit": 3,
+    "question": "On what do the gates in an LSTM cell depend to decide what information to store or forget?",
+    "options": [
+      "Only on the current input x_t.",
+      "Only on the past hidden state h_{t-1}.",
+      "On both the current input x_t and the past hidden state h_{t-1}.",
+      "They are constant parameters and do not depend on the input sequence."
+    ],
+    "correct_index": 2,
+    "explanation": "LSTM gates are computed as sigmoid(W_g * x_t + U_g * h_{t-1} + b_g). Therefore, their states depend dynamically on both the current input x_t and the previous hidden state h_{t-1}."
+  },
+  {
+    "id": "u4_transformer_flow_1",
+    "unit": 4,
+    "question": "What is the general data flow through a Transformer language model?",
+    "options": [
+      "input -> Self-Attention -> encoder -> Feed-Forward -> decoder",
+      "input -> encoder -> Self-Attention -> Feed-Forward -> decoder",
+      "input -> decoder -> Feed-Forward -> Self-Attention -> encoder",
+      "input -> encoder -> Feed-Forward -> Self-Attention -> decoder"
+    ],
+    "correct_index": 1,
+    "explanation": "The standard sequence flow in a Transformer starts with input tokens, which pass into the encoder blocks. Within the encoder, tokens go through self-attention, then feed-forward networks, and finally output representations go to the decoder."
+  },
+  {
+    "id": "u5_sdf_atoms_1",
+    "unit": 5,
+    "question": "In a molecular file format like MOL/SDF, where are the atom types (e.g. C, O, N) and their coordinate details located?",
+    "options": [
+      "In the Header Block, which lists the compound name.",
+      "In the Atom Block, which lists the X, Y, Z spatial coordinates and the chemical element symbol for each atom.",
+      "In the Bond Block, which specifies how atoms are connected.",
+      "In the Footer Block, which lists the molecular weight."
+    ],
+    "correct_index": 1,
+    "explanation": "A MOL/SDF file starts with a header, followed by the Connection Table. The Connection Table contains: 1) Counts Line, 2) Atom Block (containing 3D coordinates and element symbol for each atom), and 3) Bond Block (containing connectivity indices and bond orders)."
+  },
+  {
+    "id": "u1_forward_pass_1",
+    "unit": 1,
+    "question": "In the forward pass of a standard feed-forward neural network layer, what is the order of operations applied to the input vector x?",
+    "options": [
+      "It is passed through an element-wise non-linearity, multiplied by a weight matrix, and then added to bias weights.",
+      "It is added to bias weights, multiplied by a weight matrix, and then passed through an element-wise non-linearity.",
+      "It is multiplied by a weight matrix, added to bias weights, and then passed through an element-wise non-linearity.",
+      "It is passed through an element-wise non-linearity, added to bias weights, and then multiplied by a weight matrix."
+    ],
+    "correct_index": 2,
+    "explanation": "The standard forward pass computes a linear combination first (multiplying by weights W and adding biases b, i.e., Wx + b) and then applies the activation function f(Wx + b)."
+  },
+  {
+    "id": "u3_lstm_outgate_1",
+    "unit": 3,
+    "question": "What is the primary function of the output gate in an LSTM cell?",
+    "options": [
+      "It determines the next cell state c_t.",
+      "It determines the next hidden state h_t of the LSTM (which is also the cell's output).",
+      "It controls what information from the current input is written into the cell state.",
+      "It is typically activated using the ReLU function to speed up training."
+    ],
+    "correct_index": 1,
+    "explanation": "The output gate determines how much of the filtered cell state c_t is exposed as the next hidden state h_t: h_t = o_t * tanh(c_t). Thus, it directly determines the hidden state."
+  },
+  {
+    "id": "u2_grad_descent_1",
+    "unit": 2,
+    "question": "Which of the following is a characteristic of gradient descent optimization?",
+    "options": [
+      "It is guaranteed to find the global minimum for non-convex loss functions.",
+      "It is an iterative optimization method that adjusts parameters based on negative gradients.",
+      "It requires that the initial starting value of parameters must be 0.",
+      "The learning rate does not affect the step size of parameter updates."
+    ],
+    "correct_index": 1,
+    "explanation": "Gradient descent is an iterative algorithm that updates parameters by taking steps proportional to the negative gradient of the loss function at the current point."
+  },
+  {
+    "id": "u3_tanh_1",
+    "unit": 3,
+    "question": "What is the mathematical range of the hyperbolic tangent (tanh) activation function?",
+    "options": [
+      "It scales values to the range (0, 1).",
+      "It scales values to the range (-1, 1).",
+      "It scales values to the range (-x, x).",
+      "It scales values to the range [0, infinity)."
+    ],
+    "correct_index": 1,
+    "explanation": "The tanh function maps any real-valued input to the open interval (-1, 1)."
+  },
+  {
+    "id": "u5_halicin_milestone_1",
+    "unit": 5,
+    "question": "Why is the discovery of the antibiotic Halicin considered a milestone in machine learning-driven drug discovery?",
+    "options": [
+      "Because Halicin was synthesized entirely by a robotic generative model in 3 seconds.",
+      "Because an ML model trained on molecular structures successfully identified a structurally novel antibiotic compound that differs from traditional antibiotics, combating resistant bacteria.",
+      "Because it was the first drug designed without using chemical graphs.",
+      "Because Halicin was discovered using image recognition of bacteria plates."
+    ],
+    "correct_index": 1,
+    "explanation": "Halicin was discovered in 2020. A deep neural network predicted structural antibacterial activity. It screened a repurposing database and identified a compound (Halicin) with a structure completely different from existing antibiotics, making it highly effective against drug-resistant strains."
+  },
+  {
+    "id": "u6_mdp_1",
+    "unit": 6,
+    "question": "Which of the following statements is true regarding rewards in a Markov Decision Process (MDP)?",
+    "options": [
+      "Rewards must always be strictly positive.",
+      "Rewards must always be strictly negative.",
+      "Rewards can be positive, negative, or zero, and are associated with transitions between states.",
+      "Rewards are only given at terminal states of an episode."
+    ],
+    "correct_index": 2,
+    "explanation": "MDP rewards are real numbers. They can be positive (incentives), negative (costs/penalties), or zero, and are typically defined as a function R(s, a, s') representing the transition reward."
+  },
+  {
+    "id": "u1_maxpool_1",
+    "unit": 1,
+    "question": "Which of the following is true about Max-pooling in convolutional neural networks?",
+    "options": [
+      "It involves trainable parameters.",
+      "It is a form of subsampling that may decrease the spatial size of the data and ease computational demand.",
+      "It increases the spatial dimensions of the input feature maps.",
+      "It is typically applied before the convolutional layer to normalize input features."
+    ],
+    "correct_index": 1,
+    "explanation": "Max-pooling is a non-parametric subsampling operation. It reduces the spatial dimensions (width and height) of feature maps, which reduces the number of parameters/computations in later layers."
+  },
+  {
+    "id": "u4_lm_task_1",
+    "unit": 4,
+    "question": "What is the fundamental task of autoregressive language modeling?",
+    "options": [
+      "Predicting a context given a specific target word.",
+      "Predicting the probability of the next word given the preceding context.",
+      "Predicting the grammatical structure of a sentence using Chomsky rules.",
+      "Predicting the frequency of words across a dictionary."
+    ],
+    "correct_index": 1,
+    "explanation": "Autoregressive language models predict the next word (probability distribution over the vocabulary) given the preceding words (the context)."
+  },
+  {
+    "id": "u5_qsar_2",
+    "unit": 5,
+    "question": "According to QSAR principles, how is biological activity determined?",
+    "options": [
+      "It is determined by the molecule's chemical structure.",
+      "It is determined by the cost of synthesizing the compound.",
+      "It is determined by the number of nodes in the molecular database.",
+      "It is determined by the SMILES grammar rules."
+    ],
+    "correct_index": 0,
+    "explanation": "The fundamental premise of QSAR is that the biological activity of a chemical compound is directly determined by its physical-chemical and structural properties."
+  },
+  {
+    "id": "u4_rnn_problems_1",
+    "unit": 4,
+    "question": "What is a major problem of RNN-based language models when compared to Transformer models?",
+    "options": [
+      "RNNs require a much higher parameter count to achieve the same performance.",
+      "RNN-based models cannot be computed in parallel across the sequence during training because computations are sequential.",
+      "Word embeddings in RNNs have a much lower dimensionality than in Transformers.",
+      "RNNs cannot be trained using gradient descent."
+    ],
+    "correct_index": 1,
+    "explanation": "RNNs process tokens step-by-step (sequential dependency: h_t depends on h_{t-1}). This prevents parallelization over the sequence length during training, a limitation that Transformers overcome."
+  },
+  {
+    "id": "u6_optimal_policy_1",
+    "unit": 6,
+    "question": "How does the concept of an optimal policy relate to Q-learning?",
+    "options": [
+      "The optimal policy minimizes the sum of discounted rewards.",
+      "An optimal policy can be directly derived from the optimal Q-value function obtained via Q-learning.",
+      "There exists exactly one unique optimal policy for any MDP.",
+      "The optimal policy always chooses actions that maximize the immediate reward."
+    ],
+    "correct_index": 1,
+    "explanation": "If we learn the optimal action-value function Q*(s, a) using Q-learning, the optimal policy pi* can be obtained greedily: pi*(s) = argmax_a Q*(s, a)."
+  },
+  {
+    "id": "u4_eliza_priority_1",
+    "unit": 4,
+    "question": "In the classic ELIZA chatbot, how are rules selected when multiple keywords are detected in the user's input?",
+    "options": [
+      "ELIZA uses a neural network to predict the most likely intent class.",
+      "Each keyword has a hardcoded priority/weight, and ELIZA selects the keyword rule with the highest priority.",
+      "ELIZA randomly selects any matched keyword to maintain conversational variety.",
+      "ELIZA processes keywords in reverse alphabetical order."
+    ],
+    "correct_index": 1,
+    "explanation": "ELIZA is a rule-based system. If a user sentence contains multiple keywords (e.g. 'mother' and 'always'), ELIZA uses a hardcoded priority system to select the rule for the keyword with the highest weight (e.g., family keywords usually have very high priority)."
+  },
+  {
+    "id": "u1_cnn_output_1",
+    "unit": 1,
+    "question": "The convolution of a 30x30 image with 3 feature maps (channels) with 5 kernels of size 5x5 produces an output with how many feature maps?",
+    "options": [
+      "3 feature maps",
+      "5 feature maps",
+      "15 feature maps",
+      "36 feature maps"
+    ],
+    "correct_index": 1,
+    "explanation": "The number of output feature maps is equal to the number of convolutional kernels applied. Since 5 kernels are applied, the output has 5 feature maps."
+  },
+  {
+    "id": "u5_structure_3d_1",
+    "unit": 5,
+    "question": "Which statement is correct regarding the 3D structure (conformation) of a molecule?",
+    "options": [
+      "It is uniquely and unambiguously determined by a molecular graph.",
+      "It is independent of the molecule's chemical functionality.",
+      "It can be experimentally determined (e.g., via X-ray crystallography) and is ambiguously determined by a molecular graph.",
+      "It can be inferred deterministically and uniquely from a SMILES representation."
+    ],
+    "correct_index": 2,
+    "explanation": "A molecular graph only defines connectivity, meaning multiple 3D spatial shapes (conformations) can satisfy it (ambiguous mapping). Physical 3D structures must be determined experimentally or modeled using force fields/ML."
+  },
+  {
+    "id": "u1_cnn_resolution_1",
+    "unit": 1,
+    "question": "Which of the following is true regarding the resolution of images in convolutional layers of a CNN?",
+    "options": [
+      "Input values to a convolutional layer must always be normalized to the range [0, 1].",
+      "A convolutional layer might reduce the spatial resolution of the image depending on stride and pooling.",
+      "Weight sharing requires that the output feature maps have the same height and width as the input.",
+      "There must always be more output feature maps than input feature maps in any convolutional layer."
+    ],
+    "correct_index": 1,
+    "explanation": "Depending on the stride, padding, and kernel size, convolutional layers can reduce the spatial height and width of the input image. (Pooling layers also reduce resolution)."
+  },
+  {
+    "id": "u4_transformer_attention_1",
+    "unit": 4,
+    "question": "What is the formula for scaled dot-product attention in Transformers?",
+    "options": [
+      "Attention(Q,K,V) = softmax(Q * K^T / sqrt(d_k)) * V",
+      "Attention(Q,K,V) = sigmoid(Q * K) * V",
+      "Attention(Q,K,V) = tanh(Q * K^T) * V",
+      "Attention(Q,K,V) = softmax(Q * K^T) * V / d_k"
+    ],
+    "correct_index": 0,
+    "explanation": "Scaled dot-product attention calculates the dot products of queries with keys, divides by the square root of key dimension d_k (scaling factor to prevent vanishing gradients in softmax), applies softmax, and multiplies by values."
+  },
+  {
+    "id": "u3_ffnn_variable_length_1",
+    "unit": 3,
+    "question": "Why must sequences with variable lengths be preprocessed (e.g. via truncation or padding) before they can be fed into a standard feed-forward neural network?",
+    "options": [
+      "Because feed-forward networks require the weights to be updated at every timestep.",
+      "Because feed-forward networks have fixed input dimensions and cannot natively accept variable-length inputs.",
+      "Because variable length sequences violate the Markov assumption.",
+      "To prevent the activation functions from saturating during forward propagation."
+    ],
+    "correct_index": 1,
+    "explanation": "Feed-forward neural networks require a fixed-size input vector (number of input nodes). Therefore, variable-length sequences must be padded or truncated to a fixed dimension before they can be processed."
+  },
+  {
+    "id": "u6_q_update_2",
+    "unit": 6,
+    "question": "What is the effect of setting the learning rate alpha = 0 in the Q-learning update formula?",
+    "options": [
+      "The agent will only use the immediate reward and ignore future states.",
+      "No updates are performed at all; Q-values remain completely unchanged.",
+      "The Q-value will immediately overwrite with the new target.",
+      "The agent will explore completely randomly."
+    ],
+    "correct_index": 1,
+    "explanation": "If alpha = 0, the equation reduces to Q(s,a) = 1*Q(s,a) + 0. Thus, no updates are made to the Q-table, and the agent learns nothing."
+  },
+  {
+    "id": "u2_adam_adaptive_1",
+    "unit": 2,
+    "question": "How does the Adam optimizer compute adaptive learning rates for each individual parameter?",
+    "options": [
+      "By computing the second derivative (Hessian matrix) of the loss function.",
+      "By using exponentially decaying moving averages of both the gradients (first moment) and the squared gradients (second moment).",
+      "By multiplying the gradient by a random noise vector at each iteration.",
+      "By maintaining a single learning rate that increases when loss goes down."
+    ],
+    "correct_index": 1,
+    "explanation": "Adam combines elements of Momentum (first moment, moving average of gradients) and RMSprop (second moment, moving average of squared gradients) to scale the learning rate individually for each parameter."
+  },
+  {
+    "id": "u2_l2_reg_2",
+    "unit": 2,
+    "question": "What is the alternate name and effect of L2 regularization in neural networks?",
+    "options": [
+      "L2 regularization is also known as weight decay, and it forces weights closer to zero.",
+      "L2 regularization is also known as lasso regularization, and it yields sparse weights.",
+      "L2 regularization forces the model to adopt larger weights to improve capacity.",
+      "L2 regularization is applied during testing to deactivate noisy connections."
+    ],
+    "correct_index": 0,
+    "explanation": "L2 regularization is equivalent to weight decay in standard SGD. It penalizes large weights, shrinking them towards zero (but not to absolute zero like L1/Lasso)."
+  },
+  {
+    "id": "u3_rnn_weights_1",
+    "unit": 3,
+    "question": "Which of the following statements is true about the weight matrices in an RNN?",
+    "options": [
+      "A different weight matrix is learned and used for each individual timestep t.",
+      "The same (shared) weight matrices are used across all timesteps.",
+      "The size of the RNN weight matrices scales linearly with the input sequence length.",
+      "Multiple weight matrices must be learned for each unique sequence length in the dataset."
+    ],
+    "correct_index": 1,
+    "explanation": "Recurrent neural networks share weights across all timesteps. This parameter sharing enables the network to process sequences of arbitrary length and generalize across temporal positions."
+  },
+  {
+    "id": "u3_bptt_1",
+    "unit": 3,
+    "question": "What is Back-propagation Through Time (BPTT)?",
+    "options": [
+      "An algorithm that solves the vanishing gradient problem in RNNs.",
+      "The standard backpropagation algorithm applied to an unrolled recurrent neural network over time steps.",
+      "A feedforward method to calculate sequential outputs.",
+      "An optimization schedule that adjusts the learning rate dynamically."
+    ],
+    "correct_index": 1,
+    "explanation": "BPTT is the standard backpropagation algorithm applied to recurrent neural networks that have been 'unrolled' (replicated) for the duration of the input sequence."
+  },
+  {
+    "id": "u2_resnet_residual_1",
+    "unit": 2,
+    "question": "What is the mathematical formulation of a residual block in ResNet (Residual Networks) that helps train very deep networks?",
+    "options": [
+      "y = F(x) * x",
+      "y = F(x) + x",
+      "y = F(x) - exp(x)",
+      "y = F(x) / (1 + x)"
+    ],
+    "correct_index": 1,
+    "explanation": "The formulation y = F(x) + x contains an identity mapping shortcut connection. When gradients backpropagate, they can flow directly through the '+ x' shortcut, mitigating vanishing gradients in extremely deep architectures."
+  },
+  {
+    "id": "u5_smiles_1",
+    "unit": 5,
+    "question": "Which of the following statements about SMILES (Simplified Molecular Input Line Entry Specification) is correct?",
+    "options": [
+      "It is a tabular data representation of a molecule.",
+      "SMILES strings are unique (each molecule maps to exactly one string under any algorithm).",
+      "A molecular graph can be transformed into a SMILES string and vice versa.",
+      "A molecule can only have a single SMILES representation."
+    ],
+    "correct_index": 2,
+    "explanation": "SMILES is a line notation (string) representing molecular graphs. The mapping is bi-directional: graph -> SMILES, and SMILES -> graph. However, strings are non-unique unless canonicalization algorithms are applied."
+  },
+  {
+    "id": "u5_alphafold_gdt_1",
+    "unit": 5,
+    "question": "In protein structure prediction (such as AlphaFold evaluations in CASP), what does the GDT (Global Distance Test) score measure?",
+    "options": [
+      "The speed at which the protein folds in a simulation.",
+      "The similarity between the predicted 3D structure and the experimentally determined ground-truth structure.",
+      "The number of amino acids in the sequence.",
+      "The energy stability of the chemical bonds."
+    ],
+    "correct_index": 1,
+    "explanation": "GDT (Global Distance Test) measures the percentage of amino acid residues (C-alpha atoms) in the model that are within certain distance thresholds (e.g., 1, 2, 4, 8 Angstroms) of the experimental structure. A score of 100 means a perfect match."
+  },
+  {
+    "id": "u3_ffnn_sequence_lost_1",
+    "unit": 3,
+    "question": "When sequence data is preprocessed and fed into a standard feed-forward neural network (FFNN), what is a major drawback compared to using an RNN?",
+    "options": [
+      "The FFNN will overfit the data immediately.",
+      "The temporal relation and order of elements in the sequence is lost.",
+      "The FFNN cannot handle inputs that are not normalized.",
+      "The FFNN requires learning sequence length dependent hyperparameters."
+    ],
+    "correct_index": 1,
+    "explanation": "Standard feed-forward neural networks process each input independently. If a sequence is flattened or aggregated to fit a fixed FFNN input layer, the sequential structure and temporal order of elements is lost."
+  },
+  {
+    "id": "u2_sigmoid_deriv_2",
+    "unit": 2,
+    "question": "What is the mathematical range of the derivative of the sigmoid function, sigma'(z)?",
+    "options": [
+      "sigma'(z) is in the range (-infinity, infinity)",
+      "sigma'(z) is in the range (0, 1)",
+      "sigma'(z) is in the range (0, 1/4]",
+      "sigma'(z) is in the range [-1, 1]"
+    ],
+    "correct_index": 2,
+    "explanation": "The sigmoid function derivative is sigma(z)(1 - sigma(z)). The maximum value of this product is at sigma(z) = 0.5, which yields 0.5 * 0.5 = 0.25 (1/4). Thus, the derivative range is (0, 0.25]."
+  },
+  {
+    "id": "u6_taxi_states_1",
+    "unit": 6,
+    "question": "In the OpenAI Gym Taxi-v3 domain, how is the state space of size 500 calculated?",
+    "options": [
+      "5x5 grid positions * 5 passenger locations * 4 destination locations",
+      "5x5 grid positions * 4 passenger locations * 4 destination locations",
+      "50 states * 10 actions",
+      "25 states * 20 actions"
+    ],
+    "correct_index": 0,
+    "explanation": "The Taxi grid is 5x5 (25 positions). The passenger can be at one of 4 designated pickup locations, or inside the taxi (5 states). The destination is one of the 4 locations. Total states: 25 * 5 * 4 = 500."
+  },
+  {
+    "id": "u2_vanishing_1",
+    "unit": 2,
+    "question": "What is a major cause of the vanishing gradient problem in deep neural networks?",
+    "options": [
+      "The use of rectified linear units (ReLUs) in hidden layers.",
+      "The repeated multiplication of gradients that are smaller than 1 during backpropagation through many layers.",
+      "A learning rate that is too high, causing gradients to overshoot.",
+      "Using small batch sizes in stochastic gradient descent."
+    ],
+    "correct_index": 1,
+    "explanation": "The vanishing gradient problem occurs when gradients are backpropagated through multiple layers. If activation function derivatives or weights are small, repeated multiplication causes the gradient to shrink exponentially."
+  },
+  {
+    "id": "u1_tsne_perplexity_1",
+    "unit": 1,
+    "question": "Which parameter in the t-SNE algorithm controls the balance between local and global aspects of the data?",
+    "options": [
+      "The learning rate (eta).",
+      "The perplexity.",
+      "The number of iterations.",
+      "The early exaggeration factor."
+    ],
+    "correct_index": 1,
+    "explanation": "Perplexity can be loosely interpreted as the number of effective nearest neighbors that each point considers. It controls the scale of local vs. global structures that t-SNE preserves."
+  },
+  {
+    "id": "u2_convex_2",
+    "unit": 2,
+    "question": "Which statement describes how convex functions are optimized in practice?",
+    "options": [
+      "They can only be solved using analytical solutions.",
+      "They can have several local minima, making gradient descent unreliable.",
+      "They can be solved iteratively (e.g., via gradient descent or Newton's method) to find or approximate the global minimum.",
+      "They require non-convex regularization (like L0 norm) to ensure convergence."
+    ],
+    "correct_index": 2,
+    "explanation": "Convex functions are highly suited for iterative optimization (like gradient descent) because any local minimum is guaranteed to be a global minimum."
+  },
+  {
+    "id": "u2_vanishing_2",
+    "unit": 2,
+    "question": "Which activation function is a major contributor to the vanishing gradient problem in deep networks?",
+    "options": [
+      "ReLU (Rectified Linear Unit)",
+      "LeakyReLU",
+      "Sigmoid / Logistic activation function",
+      "ELU (Exponential Linear Unit)"
+    ],
+    "correct_index": 2,
+    "explanation": "The derivative of the sigmoid function saturates and has a maximum value of 0.25. Multiplying values less than or equal to 0.25 repeatedly across many layers quickly drives the gradient to zero."
+  },
+  {
+    "id": "u4_word2vec_cbow_skip_1",
+    "unit": 4,
+    "question": "What is the difference between the CBOW and Skip-gram architectures in Word2Vec?",
+    "options": [
+      "CBOW predicts surrounding context words from a target word; Skip-gram predicts the target word from context words.",
+      "CBOW predicts a target word from surrounding context words; Skip-gram predicts surrounding context words from a single target word.",
+      "CBOW is a deep model using Transformers; Skip-gram is a shallow RNN.",
+      "CBOW is used for text classification; Skip-gram is used for speech synthesis."
+    ],
+    "correct_index": 1,
+    "explanation": "Continuous Bag of Words (CBOW) takes context words as input and predicts the middle (target) word. Continuous Skip-gram takes the target word as input and predicts the context words."
+  },
+  {
+    "id": "u5_qsar_1",
+    "unit": 5,
+    "question": "What is the core hypothesis of QSAR (Quantitative Structure-Activity Relationship) modeling?",
+    "options": [
+      "The molecular structure is determined by its bioactivity.",
+      "Similar molecular structures are assumed to have similar chemical or biological activities.",
+      "All molecules have identical biological activities regardless of structure.",
+      "Biological activity is independent of molecular representations like graphs or strings."
+    ],
+    "correct_index": 1,
+    "explanation": "QSAR is built on the SAR hypothesis: similar chemical structures exhibit similar biological activity. Thus, ML models can predict activity from structural features."
+  },
+  {
+    "id": "u2_dropout_2",
+    "unit": 2,
+    "question": "During which phase of the machine learning pipeline is Dropout actively applied?",
+    "options": [
+      "It is applied during both training and inference (testing).",
+      "It is applied only during model inference to save power.",
+      "As a regularization technique, it is applied only during model training; it is turned off during testing.",
+      "It is applied only during data preprocessing to eliminate outliers."
+    ],
+    "correct_index": 2,
+    "explanation": "Dropout is a training-time regularization technique. During evaluation/inference, all neurons are active, and their activations are scaled by (1-p) to match the expected values."
+  },
+  {
+    "id": "u6_deep_q_1",
+    "unit": 6,
+    "question": "What is the primary objective of Deep Q-learning (DQN)?",
+    "options": [
+      "To model the policy directly as a neural network.",
+      "To approximate the action-value function Q(s, a) using a neural network.",
+      "To construct a tree of states using Monte Carlo search.",
+      "To compute exact analytical expectations of rewards."
+    ],
+    "correct_index": 1,
+    "explanation": "DQN uses a deep neural network to approximate the Q-value function, mapping state inputs to estimated Q-values for all possible actions."
+  },
+  {
+    "id": "u2_grad_descent_2",
+    "unit": 2,
+    "question": "What role does the learning rate play in gradient descent optimization?",
+    "options": [
+      "It defines the maximum number of iterations the algorithm runs.",
+      "It determines the starting parameters of the optimization.",
+      "It directly influences how much the value of a parameter changes in each step.",
+      "It is used to compute the second derivative of the loss function."
+    ],
+    "correct_index": 2,
+    "explanation": "The learning rate (alpha) scales the gradient in the update step: theta = theta - alpha * gradient. Thus, it determines the step size taken in the parameter space."
+  },
+  {
+    "id": "u2_mitigate_vanishing_1",
+    "unit": 2,
+    "question": "Which of the following activation functions helps mitigate the vanishing gradient problem in deep feed-forward neural networks because its derivative is 1 for positive inputs?",
+    "options": [
+      "Sigmoid function",
+      "Hyperbolic tangent (tanh)",
+      "Rectified Linear Unit (ReLU)",
+      "Linear activation (f(x) = c)"
+    ],
+    "correct_index": 2,
+    "explanation": "Because the derivative of ReLU for positive inputs is constant at 1, gradients passing through active ReLU units are not shrunk, preventing vanishing gradients."
+  },
+  {
+    "id": "u1_dim_red_2",
+    "unit": 1,
+    "question": "Why are dimensionality reduction techniques like PCA and t-SNE frequently used in exploratory data analysis?",
+    "options": [
+      "They guarantee that no information is lost from the original features.",
+      "They automatically cluster data and assign labels to class centroids.",
+      "They are extremely useful for visualizing high-dimensional data in 2D or 3D spaces.",
+      "They are used to increase the number of features before training a neural network."
+    ],
+    "correct_index": 2,
+    "explanation": "A primary application of PCA and t-SNE is visualization. By mapping high-dimensional spaces to 2D or 3D, humans can visually identify clusters, outliers, and patterns."
+  },
+  {
+    "id": "u3_one_to_one_rnn_1",
+    "unit": 3,
+    "question": "Which of the following is true about a 'one-to-one' RNN model type?",
+    "options": [
+      "Given an input of length Tx = 1, the output/prediction length is Ty = 1.",
+      "Given an input of length Tx = 1, the output/prediction length is Ty > 1.",
+      "Given an input of length Tx > 1, the output/prediction length is Ty = 1.",
+      "It represents sequence generation tasks like image captioning."
+    ],
+    "correct_index": 0,
+    "explanation": "A one-to-one RNN structure takes a single input (Tx=1) and produces a single output (Ty=1). It behaves essentially like a standard feedforward neural network."
+  },
+  {
+    "id": "u6_mcts_phases_1",
+    "unit": 6,
+    "question": "What is the correct order of the four phases executed in each iteration of Monte Carlo Tree Search (MCTS)?",
+    "options": [
+      "Expansion -> Selection -> Simulation -> Backpropagation",
+      "Selection -> Expansion -> Simulation -> Backpropagation",
+      "Simulation -> Selection -> Expansion -> Backpropagation",
+      "Selection -> Simulation -> Expansion -> Backpropagation"
+    ],
+    "correct_index": 1,
+    "explanation": "The four phases of MCTS are: 1) Selection (traverse down the tree using a selection policy like UCB1), 2) Expansion (add one or more child nodes), 3) Simulation (run a playout from the new node), and 4) Backpropagation (update statistics along the path back to the root)."
+  },
+  {
+    "id": "u2_convex_1",
+    "unit": 2,
+    "question": "Which of the following statements about convex functions is correct?",
+    "options": [
+      "A convex function can have several distinct local minima that are not global minima.",
+      "A convex function always has a closed-form analytical solution for computing its global minimum.",
+      "A convex function sometimes has a closed-form analytical solution (e.g., linear regression normal equations) for computing its minimum.",
+      "A convex function cannot be optimized using iterative gradient-based methods."
+    ],
+    "correct_index": 2,
+    "explanation": "While many convex functions are solved iteratively, some (like ordinary least squares linear regression) have closed-form analytical solutions (normal equations) where the minimum can be directly calculated."
+  },
+  {
+    "id": "u2_relu_2",
+    "unit": 2,
+    "question": "Why is the ReLU activation function computationally cheap?",
+    "options": [
+      "It requires calculating exponentials and divisions.",
+      "It only requires a simple thresholding operation (max(0, x)) which is very fast to compute.",
+      "It restricts values to the range (-1, 1), requiring scaling.",
+      "It computes analytical gradients using trigonometric functions."
+    ],
+    "correct_index": 1,
+    "explanation": "ReLU is defined as max(0, x). In hardware/code, this is a simple comparison/thresholding step, making it much faster to compute than smooth transcendental functions like sigmoid or tanh."
+  },
+  {
+    "id": "u6_q_update_3",
+    "unit": 6,
+    "question": "What does a learning rate parameter value of 0 < alpha < 1 signify in Q-learning updates?",
+    "options": [
+      "The agent ignores the old estimate and only keeps the new target.",
+      "The agent ignores the reward and only updates based on future value.",
+      "Both the old Q-value (old estimate) and the new temporal difference target are blended in the update step.",
+      "The Q-value is updated using a double-discount factor."
+    ],
+    "correct_index": 2,
+    "explanation": "A value of 0 < alpha < 1 acts as a weighted average, preserving some of the historical knowledge (1-alpha)*Q and adding a fraction alpha of the new TD observation."
+  },
+  {
+    "id": "u2_relu_1",
+    "unit": 2,
+    "question": "What is correct regarding the Rectified Linear Unit (ReLU) activation function?",
+    "options": [
+      "For negative inputs, ReLU yields values close to 1.",
+      "For positive inputs, ReLU increases linearly (f(x) = x).",
+      "ReLU is computationally expensive due to exponentials.",
+      "ReLU is the main cause of the vanishing gradient problem."
+    ],
+    "correct_index": 1,
+    "explanation": "For positive inputs, ReLU is linear (f(x) = x) with a constant derivative of 1. This constant derivative helps prevent gradients from vanishing."
+  },
+  {
+    "id": "u6_grid_1",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 5x5 grid. Actions are up, down, left, right. Moving off-grid keeps the agent in the same cell. Step reward is -2. Reaching the target awards +15. What is the maximum number of steps of an optimal policy?",
+    "options": [
+      "5",
+      "8",
+      "25",
+      "100"
+    ],
+    "correct_index": 1,
+    "explanation": "In a 5x5 grid, the maximum distance between any two cells (Manhattan distance) is (5-1) + (5-1) = 8 steps. An optimal policy will reach the target in at most 8 steps."
+  },
+  {
+    "id": "u5_hts_1",
+    "unit": 5,
+    "question": "Which of the following statements is true about High-Throughput Screening (HTS)?",
+    "options": [
+      "It is a machine learning technique where neural networks screen databases computationally.",
+      "It is a physical, robotic laboratory process of testing compound libraries in biological assays, which is expensive and time-consuming.",
+      "It is a virtual screening method that uses docking algorithms to estimate binding affinity.",
+      "It is used to predict the 3D folding of proteins without laboratory equipment."
+    ],
+    "correct_index": 1,
+    "explanation": "HTS is a laboratory automation method. Physical plates containing cells/proteins are robotically tested with chemical compounds. It is slow and expensive compared to virtual ML screening."
+  },
+  {
+    "id": "u4_rnn_problems_2",
+    "unit": 4,
+    "question": "Which issue limits the capability of RNNs/LSTMs in capturing context in long documents?",
+    "options": [
+      "They cannot handle variable-length text inputs.",
+      "LSTMs can have problems capturing contextual information given very long input sequences due to information bottlenecks or vanishing gradients.",
+      "Transformers are restricted to shorter sequence lengths than RNNs.",
+      "RNNs are restricted to linear activation functions."
+    ],
+    "correct_index": 1,
+    "explanation": "Although LSTMs use gating to mitigate vanishing gradients, they still struggle to carry information across thousands of timesteps because the hidden state acts as an information bottleneck."
+  },
+  {
+    "id": "u4_bpe_merging_1",
+    "unit": 4,
+    "question": "How does Byte Pair Encoding (BPE) build its subword vocabulary during tokenization?",
+    "options": [
+      "It splits all words into fixed-size 3-grams.",
+      "It starts with a character vocabulary and iteratively merges the most frequent pairs of adjacent characters or tokens in a corpus.",
+      "It uses a part-of-speech tagger to extract nouns and verbs.",
+      "It randomly drops letters until words match a dictionary."
+    ],
+    "correct_index": 1,
+    "explanation": "BPE starts by initializing the vocabulary with all base characters. It then counts co-occurrences of adjacent token pairs and iteratively adds the most frequent pair to the vocabulary as a merged token."
+  },
+  {
+    "id": "u2_sigmoid_deriv_1",
+    "unit": 2,
+    "question": "You compute y = sigma'(2*x + 25) where sigma' is the derivative of the sigmoid function, and x = 10. What can be said about the value of y?",
+    "options": [
+      "y is close to x.",
+      "y is close to 0.",
+      "y is in the range [0.25, 1.0].",
+      "y is negative because x is positive."
+    ],
+    "correct_index": 1,
+    "explanation": "For x = 10, the input to the sigmoid derivative is 2(10)+25 = 45. The sigmoid derivative is sigma'(z) = sigma(z)*(1 - sigma(z)). Since z = 45 is very large, sigma(45) is extremely close to 1, making 1 - sigma(45) close to 0. Thus y is close to 0."
+  },
+  {
+    "id": "u6_alphago_zero_1",
+    "unit": 6,
+    "question": "What was a defining characteristic of AlphaGo Zero compared to the original AlphaGo?",
+    "options": [
+      "It was trained entirely using supervised learning from human expert games.",
+      "It was trained from scratch solely via reinforcement learning in self-play, without any human game data or heuristics.",
+      "It was designed strictly for real-time strategy games rather than board games.",
+      "It replaced Monte Carlo Tree Search with Deep Q-learning."
+    ],
+    "correct_index": 1,
+    "explanation": "AlphaGo Zero achieved superhuman performance by training purely through self-play reinforcement learning, starting with random moves and zero human domain knowledge."
+  },
+  {
+    "id": "u5_smiles_2",
+    "unit": 5,
+    "question": "Which statement is true regarding the uniqueness of SMILES representations?",
+    "options": [
+      "Every molecule has a single, unique SMILES string by default.",
+      "A single molecule can have multiple valid SMILES string representations (e.g., depending on starting atom or traversal order).",
+      "SMILES strings are unique because they encode 3D coordinates.",
+      "Tabular molecules do not have SMILES representations."
+    ],
+    "correct_index": 1,
+    "explanation": "Because a molecule can be traversed in different orders, multiple valid SMILES strings can represent the same molecule (e.g., ethanol can be CCO or OCC), unless a canonical SMILES standard is enforced."
+  },
+  {
+    "id": "u2_dropout_1",
+    "unit": 2,
+    "question": "How does Dropout operate during the training phase of a neural network?",
+    "options": [
+      "It permanently deletes a fixed subset of weights from the network.",
+      "A certain percentage of hidden units in a layer is randomly deactivated (zeroed out) at each training step.",
+      "It increases the learning rate of units that have small gradients.",
+      "It scales down the inputs to prevent activations from saturating."
+    ],
+    "correct_index": 1,
+    "explanation": "Dropout randomly zero outs a fraction p of activation units in a layer at each training step, forcing the network to learn redundant representations."
+  },
+  {
+    "id": "docx_q_101",
+    "unit": 3,
+    "question": "Consider some sequence data s of length T with D features at every timestep t. Which statements are true across samples?",
+    "options": [
+      "Both T and D can vary arbitrarily between samples.",
+      "D is constant between samples, but T can vary between samples.",
+      "T must be constant, but D can vary between samples.",
+      "Both T and D must remain strictly constant across all samples."
+    ],
+    "correct_index": 1,
+    "explanation": "For a given dataset, the number of features per step (D) is defined by the feature representation and must be constant. The sequence length (T) can naturally vary between different sequences (e.g., sentences of different lengths)."
+  },
+  {
+    "id": "docx_q_124",
+    "unit": 3,
+    "question": "Which of the following statements are true about the one-to-many RNN type?",
+    "options": [
+      "Given an input of length Tx > 1, the output/prediction length is Ty = 1.",
+      "It does not use hidden states.",
+      "Given an input of length Tx = 1, the output/prediction length is Ty > 1.",
+      "It maps a sequence of inputs to a single output."
+    ],
+    "correct_index": 2,
+    "explanation": "A one-to-many RNN takes a single vector as input (Tx=1) and generates a sequence of outputs over time (Ty > 1), such as generating music from a seed note."
+  },
+  {
+    "id": "docx_q_133",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where you have a dictionary size of 5000, an embedding size of 200 and a hidden representation size of 300. What is the output size of the language model when considering a single input word?",
+    "options": [
+      "200",
+      "1,500,000",
+      "5000",
+      "300"
+    ],
+    "correct_index": 2,
+    "explanation": "The model outputs logits representing probabilities for each word in the vocabulary, so the output vector size is equal to the dictionary size, which is 5000."
+  },
+  {
+    "id": "docx_q_110",
+    "unit": 3,
+    "question": "Assume you have a sequence of 40 elements, and each element has 4 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 5. What is the size of the first RNN output?",
+    "options": [
+      "4",
+      "160",
+      "40",
+      "5"
+    ],
+    "correct_index": 3,
+    "explanation": "The RNN output dimensionality matches its hidden representation dimension, which is 5."
+  },
+  {
+    "id": "docx_q_6",
+    "unit": 1,
+    "question": "In what types of machine learning tasks can tabular data be applied?",
+    "options": [
+      "Tabular data can be used in supervised as well as unsupervised learning.",
+      "Only in reinforcement learning environments.",
+      "Only in unsupervised clustering tasks.",
+      "Only in supervised learning scenarios like classification."
+    ],
+    "correct_index": 0,
+    "explanation": "Tabular data is general-purpose and can be used for supervised tasks (e.g., classification, regression) and unsupervised tasks (e.g., clustering, dimensionality reduction)."
+  },
+  {
+    "id": "docx_q_129",
+    "unit": 4,
+    "question": "In the context of language models, which statements are true about a word embedding?",
+    "options": [
+      "An embedding is a sparse binary vector.",
+      "An embedding cannot represent semantic similarities between words.",
+      "The encoder part of a language model is closely related to a word embedding.",
+      "Word embedding dimensions must match the vocabulary size."
+    ],
+    "correct_index": 2,
+    "explanation": "The encoder layer of a language model is represented by an embedding lookup matrix, mapping vocabulary word indices to dense, continuous numerical vectors."
+  },
+  {
+    "id": "docx_q_162",
+    "unit": 6,
+    "question": "What is the primary goal of an agent in reinforcement learning?",
+    "options": [
+      "To minimize the expected transition probabilities.",
+      "To visit every state in the environment an equal number of times.",
+      "To approximate the Jaccard similarity of state representations.",
+      "To learn the optimal policy that maximizes expected cumulative reward."
+    ],
+    "correct_index": 3,
+    "explanation": "The agent's objective is to find a policy (mapping from states to actions) that maximizes the expected sum of discounted future rewards over time."
+  },
+  {
+    "id": "docx_q_17",
+    "unit": 1,
+    "question": "Which of the following augmentation techniques can theoretically be applied to any data type?",
+    "options": [
+      "Some data augmentation techniques (e.g., noise) can be theoretically applied to all kinds of data.",
+      "Word substitution using synonym dictionaries.",
+      "Crop-and-resize bounding boxes.",
+      "Horizontal and vertical image flipping."
+    ],
+    "correct_index": 0,
+    "explanation": "Adding random noise (e.g. Gaussian noise) is a general mathematical operation that can be applied to any numerical vector, including tabular, image, or audio features."
+  },
+  {
+    "id": "docx_q_113",
+    "unit": 3,
+    "question": "Which of the following is correct regarding Long Short-Term Memory (LSTM) networks?",
+    "options": [
+      "They contain gates that control the flow of information and are designed to learn long-term dependencies.",
+      "They are more prone to vanishing gradients than standard recurrent neural networks.",
+      "They do not share weights across different timesteps.",
+      "They replace recurrence with feed-forward multi-head attention layers."
+    ],
+    "correct_index": 0,
+    "explanation": "LSTMs introduce a cell state (memory) and regulating gates (forget, input, output) to selectively add or remove information, allowing them to capture long-term context without vanishing gradients."
+  },
+  {
+    "id": "docx_q_40",
+    "unit": 1,
+    "question": "What is the mathematical range of the output of the logistic/sigmoid function?",
+    "options": [
+      "It scales values to the range (-infinity, +infinity).",
+      "It scales values to the range (0, 1).",
+      "It scales values to the range [0, infinity).",
+      "It scales values to the range (-1, 1)."
+    ],
+    "correct_index": 1,
+    "explanation": "The sigmoid function maps any real-valued input to a value in the open interval (0, 1), representing a probability."
+  },
+  {
+    "id": "docx_q_22",
+    "unit": 1,
+    "question": "How is sequence data typically visualized in data analysis?",
+    "options": [
+      "In circular dendrograms.",
+      "In high-dimensional t-SNE scatter plots.",
+      "In 2D confusion matrices.",
+      "Sequence data is typically displayed in line plots."
+    ],
+    "correct_index": 3,
+    "explanation": "Sequence data represents values ordered sequentially (like time series). It is naturally visualized using line plots where the x-axis represents time/position and the y-axis represents the value."
+  },
+  {
+    "id": "docx_q_145",
+    "unit": 4,
+    "question": "In the context of language models, which statements are true about self-attention?",
+    "options": [
+      "Self-attention is only used in the final fully connected classification layer.",
+      "Self-attention cannot be parallelized.",
+      "Self-attention requires processing tokens sequentially using hidden states.",
+      "Self-attention allows the model to weigh the importance of different words, capture long-range dependencies, and create contextualized embeddings."
+    ],
+    "correct_index": 3,
+    "explanation": "Self-attention compares each token to all other tokens to compute similarity-based weights, helping the model capture long-range dependencies and build contextual word embeddings."
+  },
+  {
+    "id": "docx_q_62",
+    "unit": 1,
+    "question": "What mathematical operation do the weights and biases of a layer perform on the input data?",
+    "options": [
+      "An unsupervised probability clustering.",
+      "A non-convex downprojection.",
+      "An element-wise non-linear scaling.",
+      "Weights and biases will perform a linear transformation of the input data."
+    ],
+    "correct_index": 3,
+    "explanation": "Computing Wx + b is a linear (affine) transformation of the input vector x, rotating and shifting it in the vector space."
+  },
+  {
+    "id": "docx_q_109",
+    "unit": 3,
+    "question": "Assume you have a sequence of 15 elements, and each element has 10 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 8. What is the size of the first RNN output?",
+    "options": [
+      "150",
+      "10",
+      "8",
+      "15"
+    ],
+    "correct_index": 2,
+    "explanation": "The output size of a standard RNN layer at any step is determined solely by its hidden state dimension (hidden state size), which is 8."
+  },
+  {
+    "id": "docx_q_99",
+    "unit": 2,
+    "question": "With respect to the vanishing gradient problem, which of the following statements are true regarding deep neural networks?",
+    "options": [
+      "Vanishing gradients only happen in shallow network architectures.",
+      "The vanishing gradient problem will typically occur towards the input layer, and is more severe in deeper networks.",
+      "The vanishing gradient problem will typically occur towards the output layer.",
+      "Residual connections make the vanishing gradient problem worse."
+    ],
+    "correct_index": 1,
+    "explanation": "During backpropagation, gradients are multiplied from the output layer back to the input layer. As a result, the repeated multiplications cause the gradients to shrink most severely at the early layers closest to the input layer."
+  },
+  {
+    "id": "docx_q_115",
+    "unit": 3,
+    "question": "How is the gating mechanism mathematically formulated in an LSTM?",
+    "options": [
+      "By applying a non-linear softmax function across all timesteps.",
+      "By projecting inputs into a linear subspace of size k.",
+      "By element-wise multiplication of a feature vector with a gate vector valued between 0 and 1.",
+      "By adding a bias weight to the hidden state vector."
+    ],
+    "correct_index": 2,
+    "explanation": "Gates output values in (0, 1) using sigmoid activations. Element-wise multiplication with these gate values regulates how much information is read, written, or forgotten."
+  },
+  {
+    "id": "docx_q_108",
+    "unit": 3,
+    "question": "Assume you have a sequence of 50 elements, and each element has 9 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 12. What is the size of the first RNN output?",
+    "options": [
+      "12",
+      "50",
+      "9",
+      "450"
+    ],
+    "correct_index": 0,
+    "explanation": "The output size at the first timestep is determined by the hidden state size of the RNN, which is 12."
+  },
+  {
+    "id": "docx_q_119",
+    "unit": 3,
+    "question": "What is the function of the forget gate in an LSTM cell?",
+    "options": [
+      "It normalizes activation values across different timesteps.",
+      "It resets the learning rate of the optimizer to zero.",
+      "It decides what information to discard from the cell state.",
+      "It forces the model to ignore future sequences."
+    ],
+    "correct_index": 2,
+    "explanation": "The forget gate outputs values between 0 (completely forget) and 1 (completely keep) for each element in the cell state, deciding which past information to discard."
+  },
+  {
+    "id": "docx_q_164",
+    "unit": 6,
+    "question": "What is the goal of the Q-learning algorithm?",
+    "options": [
+      "To compute the exact transition probabilities of a non-convex function.",
+      "To compute the principal components of state vectors.",
+      "To approximate the optimal Q-values (state-action values) of an MDP.",
+      "To classify images into discrete categorical classes."
+    ],
+    "correct_index": 2,
+    "explanation": "Q-learning is a model-free reinforcement learning algorithm that learns the optimal quality of action-value pairs, which determines the expected return of taking action 'a' in state 's'."
+  },
+  {
+    "id": "docx_q_136",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where you have a dictionary size of 1500, an embedding size of 100 and a hidden representation size of 200. What is the output size of the language model when considering a single input word?",
+    "options": [
+      "200",
+      "100",
+      "1500",
+      "150,000"
+    ],
+    "correct_index": 2,
+    "explanation": "The decoder projects the hidden state of size 200 to output scores for all 1500 possible words in the dictionary, so the output size is 1500."
+  },
+  {
+    "id": "docx_q_169",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 20x20 grid. Actions are up, down, left, right. Off-grid penalty is -5. Move actions give 0 reward. Target gives +20. Which of the following is true?",
+    "options": [
+      "An optimal policy will give a final reward of 20, and multiple optimal policies can exist despite different step counts.",
+      "An optimal policy will give a final reward of 20, and all optimal policies must take the exact same number of steps.",
+      "It is impossible to never reach the target.",
+      "Any policy that reaches the target will receive a reward of 20."
+    ],
+    "correct_index": 0,
+    "explanation": "An optimal policy does not hit the boundaries, so it incurs no -5 penalty. Thus, its final reward is exactly the target reward (+20). There can be multiple paths (and different step counts if no step penalty exists) that avoid boundaries and reach the target, all yielding +20."
+  },
+  {
+    "id": "docx_q_79",
+    "unit": 1,
+    "question": "In neural networks, what is translation invariance, and how is it implemented?",
+    "options": [
+      "It is the ability to ignore color information, implemented via pooling.",
+      "It is the ability to handle variable-length sequences, implemented via padding.",
+      "In neural networks, it can be implemented via convolutional layers.",
+      "It is implemented by training the model entirely using supervised regression."
+    ],
+    "correct_index": 2,
+    "explanation": "Convolutional layers apply the same kernel across all spatial locations (weight sharing). This structure helps the network recognize features regardless of their spatial translation."
+  },
+  {
+    "id": "docx_q_23",
+    "unit": 1,
+    "question": "Which models are specifically designed to handle sequential inputs without losing spatial or temporal relationships?",
+    "options": [
+      "There are dedicated machine learning models that deal with sequence data.",
+      "Linear regression models.",
+      "Standard multi-layer perceptrons (MLPs).",
+      "Agglomerative clustering trees."
+    ],
+    "correct_index": 0,
+    "explanation": "Models like RNNs, LSTMs, and Transformers are specifically architected with recurrent states or self-attention to process sequence data while preserving order and context."
+  },
+  {
+    "id": "docx_q_155",
+    "unit": 5,
+    "question": "Which of the following is correct regarding the 3D structure of a molecule?",
+    "options": [
+      "It has no impact on the biological functionality of the drug.",
+      "It is cheap and straightforward to determine experimentally.",
+      "It is unambiguously determined by the molecular graph.",
+      "A single molecular graph can correspond to multiple 3D spatial conformations due to rotations around single bonds."
+    ],
+    "correct_index": 3,
+    "explanation": "While a molecular graph defines the connectivity of atoms, single covalent bonds can rotate, allowing the same molecule to assume different 3D shapes (conformations) in space, affecting how it binds to targets."
+  },
+  {
+    "id": "docx_q_167",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 5x5 grid. Actions are up, down, left, right. Each step has a reward of -1. Reaching the target gives +1. What is correct about this scenario?",
+    "options": [
+      "The optimal policy will always yield a reward of +1.",
+      "The maximum number of steps of an optimal policy is 8, and a bad policy might never reach the target.",
+      "The final reward is always +1.",
+      "The target destination is reached in exactly 25 steps under the optimal policy."
+    ],
+    "correct_index": 1,
+    "explanation": "Since the agent is placed randomly and the target is random, the maximum possible distance between any two cells on a 5x5 grid is 8 steps (4 horizontal + 4 vertical). A bad policy (e.g. going in circles) might never reach the target."
+  },
+  {
+    "id": "docx_q_142",
+    "unit": 4,
+    "question": "What is the general data flow through a Transformer language model?",
+    "options": [
+      "input -> decoder -> feed-forward -> output",
+      "input -> embedding -> self-attention -> feed-forward -> output (or input -> encoder -> Self-Attention -> Feed-Forward -> decoder)",
+      "input -> self-attention -> RNN -> decoder",
+      "input -> encoder -> RNN -> decoder"
+    ],
+    "correct_index": 1,
+    "explanation": "In Transformers, inputs are mapped to embeddings, passed through multi-head self-attention, processed by a position-wise feed-forward network, and projected to outputs."
+  },
+  {
+    "id": "docx_q_49",
+    "unit": 1,
+    "question": "What is the role of the learning rate in gradient descent?",
+    "options": [
+      "It normalizes input pixel intensities.",
+      "It determines the direction of the parameter update.",
+      "It determines the step size of the parameter updates.",
+      "It calculates the exact derivative of the activation function."
+    ],
+    "correct_index": 2,
+    "explanation": "The learning rate (eta) is a positive scalar multiplier that controls the size of the steps taken toward the minimum."
+  },
+  {
+    "id": "docx_q_106",
+    "unit": 3,
+    "question": "Assume you have a sequence of 45 elements, and each element has 6 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 14. What is the size of the first RNN output?",
+    "options": [
+      "270",
+      "45",
+      "6",
+      "14"
+    ],
+    "correct_index": 3,
+    "explanation": "Regardless of the sequence length (45), the output size at any timestep is equal to the hidden representation size, which is 14."
+  },
+  {
+    "id": "docx_q_32",
+    "unit": 1,
+    "question": "What is the primary role of a loss function in supervised machine learning?",
+    "options": [
+      "It determines the size of the mini-batch during training.",
+      "It extracts features from raw RGB pixels.",
+      "It normalizes the weights of the convolutional kernels.",
+      "It measures how close the prediction is to the true target."
+    ],
+    "correct_index": 3,
+    "explanation": "A loss function quantifies the discrepancy between predictions and true labels, serving as the objective function to minimize during parameter optimization."
+  },
+  {
+    "id": "docx_q_95",
+    "unit": 2,
+    "question": "Which of the following is correct regarding a convex function?",
+    "options": [
+      "It typically has several local minima and plateaus.",
+      "It is common in deep learning loss landscapes.",
+      "It requires dynamic programming and MCTS to approximate the minimum.",
+      "It has a single minimum, and can be solved analytically or iteratively (e.g., via gradient descent)."
+    ],
+    "correct_index": 3,
+    "explanation": "Convex functions have a single global minimum (no local minima). They can sometimes be solved analytically (closed-form) or reliably minimized using iterative gradient descent."
+  },
+  {
+    "id": "docx_q_130",
+    "unit": 4,
+    "question": "Which of the following is true regarding Word2Vec embeddings?",
+    "options": [
+      "The distance between word vectors is measured using the Jaccard index.",
+      "Word2Vec uses recurrent LSTM networks to train word vectors.",
+      "Similarity of word embeddings can be measured with cosine similarity.",
+      "Similar words are mapped to distant regions in the feature space."
+    ],
+    "correct_index": 2,
+    "explanation": "Cosine similarity measures the cosine of the angle between two word vectors, serving as a standard metric for semantic similarity in Word2Vec."
+  },
+  {
+    "id": "docx_q_152",
+    "unit": 5,
+    "question": "What is the core hypothesis of QSAR (Quantitative Structure-Activity Relationship) models?",
+    "options": [
+      "Molecules can only bind to targets if they have linear structures.",
+      "Molecules with different chemical formulas have identical bio-activity.",
+      "The molecular structure is determined by the binding target.",
+      "The biological activity of a molecule is determined by its molecular structure (similar structures have similar activities)."
+    ],
+    "correct_index": 3,
+    "explanation": "QSAR is built on the structure-activity relationship hypothesis: the physical and chemical properties of a molecular structure dictate its biological activity, meaning structural similarity implies functional similarity."
+  },
+  {
+    "id": "docx_q_81",
+    "unit": 1,
+    "question": "Which of the following is correct regarding resolution in a convolutional neural network layer?",
+    "options": [
+      "Convolutional layers cannot change image resolutions.",
+      "A convolutional layer always doubles the spatial resolution.",
+      "Resolution is only changed by the fully connected classifier layer.",
+      "A convolutional layer might reduce the resolution of the image."
+    ],
+    "correct_index": 3,
+    "explanation": "Depending on kernel size, stride, and padding, a convolution operation typically reduces the spatial height/width of the feature maps."
+  },
+  {
+    "id": "docx_q_20",
+    "unit": 1,
+    "question": "What is a major limitation of feeding sequence data into standard, feed-forward neural networks?",
+    "options": [
+      "Feed-forward networks are computationally too slow to process sequences.",
+      "The relation of elements in the sequence is lost.",
+      "Feed-forward networks cannot handle float inputs.",
+      "The output size must always equal the sequence length."
+    ],
+    "correct_index": 1,
+    "explanation": "Standard feed-forward neural networks process each sequence element independently or in a flattened structure, which destroys the temporal/positional order and relations of the sequence."
+  },
+  {
+    "id": "docx_q_8",
+    "unit": 1,
+    "question": "What does each row represent in a standard tabular dataset?",
+    "options": [
+      "Each row corresponds to an individual sample.",
+      "A class label probability distribution.",
+      "A single feature dimension.",
+      "A weight parameter of the linear model."
+    ],
+    "correct_index": 0,
+    "explanation": "In tabular data, rows represent individual observations or samples, while columns represent the features measured for those samples."
+  },
+  {
+    "id": "docx_q_140",
+    "unit": 4,
+    "question": "Assume a language modeling scenario with dictionary size 1000, embedding size 150, and hidden size 150. Which of the following is correct?",
+    "options": [
+      "The embedding matrix is identical to the decoder matrix.",
+      "The decoder output size is 150.",
+      "The model outputs probabilities for each of the 1000 words, the encoder and decoder have equal parameter counts, and the embedding matrix is identical to the encoder.",
+      "The encoder and decoder have different parameter counts."
+    ],
+    "correct_index": 2,
+    "explanation": "Since embedding size = hidden size = 150, both encoder (1000 * 150) and decoder (150 * 1000) have the same number of parameters, and the embedding matrix is the encoder matrix."
+  },
+  {
+    "id": "docx_q_125",
+    "unit": 4,
+    "question": "What is the primary task of a language model?",
+    "options": [
+      "To map continuous vectors to sparse binary coordinates.",
+      "Language modeling is the task of predicting a word given a context.",
+      "To translate text into 3D molecular graph conformations.",
+      "To cluster sentences using Gaussian Mixture Models."
+    ],
+    "correct_index": 1,
+    "explanation": "Language models estimate the probability distribution of sequences of words, typically by predicting the next word given a preceding context."
+  },
+  {
+    "id": "docx_q_120",
+    "unit": 3,
+    "question": "Which of the following is true when comparing an LSTM to a standard recurrent neural network (RNN)?",
+    "options": [
+      "An LSTM does not use recurrent weight matrices.",
+      "A standard RNN is better at learning long-term dependencies.",
+      "An LSTM has fewer parameters and is computationally cheaper.",
+      "An LSTM is less prone to the vanishing gradient problem."
+    ],
+    "correct_index": 3,
+    "explanation": "Thanks to its cell state and additive updates (the Constant Error Carousel), LSTMs are much more resistant to vanishing gradients than standard RNNs."
+  },
+  {
+    "id": "docx_q_157",
+    "unit": 5,
+    "question": "Why is the protein folding problem computationally challenging?",
+    "options": [
+      "The number of possible ways to fold is extremely high, and the space of possible structures is astronomical.",
+      "Because proteins are too small to be scanned by lasers.",
+      "Because amino acids do not form covalent bonds.",
+      "Because protein representations are non-convex."
+    ],
+    "correct_index": 0,
+    "explanation": "Levinthal's paradox states that if a protein folded by sequentially testing all possible conformations, it would take longer than the age of the universe. The folding space is extremely high."
+  },
+  {
+    "id": "docx_q_69",
+    "unit": 1,
+    "question": "What mathematical function does the ReLU activation function equate to for positive inputs?",
+    "options": [
+      "An exponential scaling function.",
+      "A step function.",
+      "For positive inputs, ReLU equates to the identity function.",
+      "A log-likelihood distribution."
+    ],
+    "correct_index": 2,
+    "explanation": "Since ReLU(x) = x for x > 0, it acts as the identity function for all positive inputs."
+  },
+  {
+    "id": "docx_q_126",
+    "unit": 4,
+    "question": "During text generation with a trained language model, what does sampling from the distribution achieve?",
+    "options": [
+      "It reduces the dictionary size by removing low-probability words.",
+      "It forces the model to ignore context and select words randomly.",
+      "It guarantees that the generated text will always be identical.",
+      "It selects the next word based on the predicted probability distribution, introducing variety."
+    ],
+    "correct_index": 3,
+    "explanation": "Sampling from the output probability distribution allows the model to choose different words at each step based on their likelihood, producing diverse and natural-sounding text."
+  },
+  {
+    "id": "docx_q_36",
+    "unit": 1,
+    "question": "What is a characteristic of an overfit model?",
+    "options": [
+      "Overfitting means that the model will not generalize well.",
+      "The training loss is much higher than the test loss.",
+      "The model uses too few parameters to represent the data.",
+      "The model generalizes extremely well to new, unseen data."
+    ],
+    "correct_index": 0,
+    "explanation": "Overfitting occurs when a model fits the training data too closely (including noise), leading to poor performance and high error on unseen validation/test data."
+  },
+  {
+    "id": "docx_q_37",
+    "unit": 1,
+    "question": "How do you identify overfitting by looking at the loss values?",
+    "options": [
+      "Overfitting occurs when the loss values on training and test set differ significantly.",
+      "The training loss and test loss both decrease to zero.",
+      "The test loss becomes significantly lower than the training loss.",
+      "The loss values remain constant across all epochs."
+    ],
+    "correct_index": 0,
+    "explanation": "When a model overfits, the training loss continues to decrease, while the test loss starts to increase or remains high. This significant divergence indicates overfitting."
+  },
+  {
+    "id": "docx_q_105",
+    "unit": 3,
+    "question": "Assume you have a sequence of 8 elements, and each element has 6 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 14. What is the size of the first RNN output?",
+    "options": [
+      "6",
+      "48",
+      "14",
+      "8"
+    ],
+    "correct_index": 2,
+    "explanation": "The output size of a standard RNN layer at any step is determined solely by its hidden state dimension (hidden state size), which is 14."
+  },
+  {
+    "id": "docx_q_63",
+    "unit": 1,
+    "question": "Why are activation functions necessary in deep neural networks?",
+    "options": [
+      "Activation functions are necessary to introduce non-linearity.",
+      "To scale model outputs to be strictly binary.",
+      "To normalize activation values across mini-batches.",
+      "To compute the exact gradient of the loss function analytically."
+    ],
+    "correct_index": 0,
+    "explanation": "Without non-linearities, stacking multiple linear layers collapses mathematically into a single linear layer. Non-linear activation functions allow deep networks to represent complex non-linear functions."
+  },
+  {
+    "id": "docx_q_163",
+    "unit": 6,
+    "question": "Consider the Q-learning update parameters: alpha (learning rate) and gamma (discount factor). Which is correct?",
+    "options": [
+      "alpha = 0 means no updates are performed, and gamma = 0 means the agent is myopic (focuses only on immediate rewards).",
+      "alpha = 1 means only the old Q-value is preserved.",
+      "gamma = 1 means future rewards are ignored entirely.",
+      "alpha = 0 means the old Q-value is immediately overwritten."
+    ],
+    "correct_index": 0,
+    "explanation": "If learning rate alpha = 0, the Q-value remains unchanged. If discount factor gamma = 0, the target is r_t + 0, meaning the agent ignores future rewards and optimizes only for the immediate step."
+  },
+  {
+    "id": "docx_q_93",
+    "unit": 1,
+    "question": "Which of the following is correct regarding Max Pooling in CNNs?",
+    "options": [
+      "It is a parametric operation used to upscale feature resolutions.",
+      "It is a form of subsampling that may decrease the spatial size of data, easing computational demand.",
+      "It uses learnable weights that are updated via backpropagation.",
+      "It increases the parameter footprint of the convolutional network."
+    ],
+    "correct_index": 1,
+    "explanation": "Max pooling is a fixed, non-parametric subsampling operation. It extracts the maximum value in a window, reducing spatial dimensions and computational load."
+  },
+  {
+    "id": "docx_q_76",
+    "unit": 1,
+    "question": "What is the mathematical range of the output of the tanh activation function?",
+    "options": [
+      "It scales values to [0, infinity).",
+      "It scales values to the range (-infinity, +infinity).",
+      "The tanh function scales values to the range (-1,1).",
+      "It scales values to the range (0, 1)."
+    ],
+    "correct_index": 2,
+    "explanation": "The hyperbolic tangent (tanh) activation function maps any real-valued input to a value in the open interval (-1, 1)."
+  },
+  {
+    "id": "docx_q_47",
+    "unit": 1,
+    "question": "What is the primary function of the Softmax activation function in neural networks?",
+    "options": [
+      "It normalizes mini-batches by subtracting the mean.",
+      "It is a method to compute probabilities, scaling outputs to sum to 1.",
+      "It introduces linear shortcuts to speed up backpropagation.",
+      "It is used in regression to output unbounded continuous values."
+    ],
+    "correct_index": 1,
+    "explanation": "Softmax converts a vector of raw outputs (logits) into a probability distribution over multiple classes where each probability is in (0, 1) and they sum to 1."
+  },
+  {
+    "id": "docx_q_131",
+    "unit": 4,
+    "question": "What is the general data flow through a standard RNN language model?",
+    "options": [
+      "input -> RNN -> encoder -> decoder",
+      "input -> encoder -> RNN -> decoder",
+      "input -> decoder -> RNN -> encoder",
+      "RNN -> input -> encoder -> decoder"
+    ],
+    "correct_index": 1,
+    "explanation": "The data flow is: raw input tokens are mapped to embeddings by the encoder, the embeddings are processed sequentially by the RNN, and the hidden states are projected by the decoder to output logits."
+  },
+  {
+    "id": "docx_q_159",
+    "unit": 6,
+    "question": "What are the components of a Markov Decision Process (MDP)?",
+    "options": [
+      "A set of weights, biases, and activation functions.",
+      "A set of word embeddings and cosine similarities.",
+      "A set of possible states, a set of possible actions, transition probabilities, and rewards.",
+      "A set of principal components and dissimilarity cut heights."
+    ],
+    "correct_index": 2,
+    "explanation": "A formal MDP is defined by a 5-tuple (S, A, P, R, gamma) representing states, actions, transition probabilities, rewards, and a discount factor."
+  },
+  {
+    "id": "docx_q_73",
+    "unit": 1,
+    "question": "Why does the ReLU activation function help in training deep neural networks?",
+    "options": [
+      "It forces all weights to be positive.",
+      "It transforms non-convex error surfaces to convex ones.",
+      "It scales inputs to be zero-mean.",
+      "ReLUs can mitigate the vanishing gradient problem."
+    ],
+    "correct_index": 3,
+    "explanation": "Because the derivative of ReLU is 1 for any positive input, it does not saturate like sigmoid or tanh. This allows gradients to flow back through deep layers without vanishing."
+  },
+  {
+    "id": "docx_q_26",
+    "unit": 1,
+    "question": "In a classification task, what is the nature of the target values?",
+    "options": [
+      "The target value is a class label.",
+      "The target value is always computed using expectation-maximization.",
+      "The target value is a continuous real number.",
+      "The target value is a weight matrix."
+    ],
+    "correct_index": 0,
+    "explanation": "Classification is a supervised learning task where the target is a discrete category or class label."
+  },
+  {
+    "id": "docx_q_104",
+    "unit": 3,
+    "question": "In a standard recurrent neural network (RNN), how is the sequence input processed?",
+    "options": [
+      "The sequence is flattened and processed using a convolutional filter.",
+      "All elements are processed in parallel in a single forward step.",
+      "Only the first and last elements are processed.",
+      "The input sequence must be fed timestep by timestep to the RNN."
+    ],
+    "correct_index": 3,
+    "explanation": "Recurrent neural networks process sequential data step-by-step. The hidden state h_t at step t depends sequentially on the input x_t and the previous hidden state h_{t-1}."
+  },
+  {
+    "id": "docx_q_21",
+    "unit": 1,
+    "question": "What must be done to variable-length sequences before they can be input into standard feed-forward networks?",
+    "options": [
+      "They must be downprojected using PCA to a single dimension.",
+      "They must be converted into undirected graphs.",
+      "They must be trained using reinforcement learning first.",
+      "Sequences with variable lengths must be preprocessed before they can be an input to a feed-forward neural network."
+    ],
+    "correct_index": 3,
+    "explanation": "Feed-forward neural networks require fixed-sized input vectors. Variable-length sequences must therefore be preprocessed (e.g. by padding with zeros or truncating to a fixed length)."
+  },
+  {
+    "id": "docx_q_65",
+    "unit": 1,
+    "question": "How does the choice of activation function affect neural network optimization?",
+    "options": [
+      "It guarantees that the loss function becomes convex.",
+      "It has no impact on training results.",
+      "It only affects the speed of the forward pass, not the gradients.",
+      "Different activation functions might lead to different training results."
+    ],
+    "correct_index": 3,
+    "explanation": "The derivative properties of activation functions (e.g. saturation of sigmoid vs. constant slope of ReLU) directly affect gradient flow, which influences optimization speed, stability, and convergence."
+  },
+  {
+    "id": "docx_q_60",
+    "unit": 1,
+    "question": "Given input vector x, weight matrix W, bias b, and activation function f, what is the correct gradient/formula for the backward pass of a linear layer?",
+    "options": [
+      "gradient = x * f'(W) + b",
+      "gradient = f(x * W + b)",
+      "gradient = f'(x) * W + b",
+      "gradient = f'(x * W + b)"
+    ],
+    "correct_index": 3,
+    "explanation": "According to the chain rule, the derivative of f(xW + b) with respect to its pre-activation input is the derivative of the activation function evaluated at the pre-activation value, f'(xW + b)."
+  },
+  {
+    "id": "docx_q_48",
+    "unit": 1,
+    "question": "In gradient descent parameter updates, how is the update step defined?",
+    "options": [
+      "The new parameter value is calculated as the old parameter value minus the learning rate times the gradient of the loss with respect to the parameter.",
+      "Parameters are updated by multiplying them by the learning rate.",
+      "The new parameter value is calculated as the old parameter value plus the learning rate times the gradient.",
+      "Parameters are updated using a random normal distribution."
+    ],
+    "correct_index": 0,
+    "explanation": "To minimize the loss, we step in the opposite direction of the gradient (steepest descent). The update rule is theta = theta - eta * (dL/dtheta)."
+  },
+  {
+    "id": "docx_q_111",
+    "unit": 3,
+    "question": "Assume you have a sequence of 5 elements, and each element has 3 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 4. What is the size of the last RNN output?",
+    "options": [
+      "12",
+      "3",
+      "5",
+      "4"
+    ],
+    "correct_index": 3,
+    "explanation": "The output size of a standard RNN layer at any step (first, intermediate, or last) is determined solely by its hidden state dimension, which is 4."
+  },
+  {
+    "id": "docx_q_87",
+    "unit": 1,
+    "question": "The convolution of a 50x50 image with 4 feature maps (channels) with 2 kernels of size 3x3 (no padding) produces which output?",
+    "options": [
+      "an output with 2 feature maps with a resolution of 48x48 each.",
+      "an output with 4 feature maps with a resolution of 48x48 each.",
+      "an output with 2 feature maps with a resolution of 50x50 each.",
+      "an output with 8 feature maps with a resolution of 46x46 each."
+    ],
+    "correct_index": 0,
+    "explanation": "The number of kernels is 2, so there are 2 feature maps. The resolution without padding is W - K + 1 = 50 - 3 + 1 = 48, producing 48x48 resolution."
+  },
+  {
+    "id": "docx_q_45",
+    "unit": 1,
+    "question": "You are given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(500) * σ'(-200). What is the output range and value of y?",
+    "options": [
+      "y is in the range (0,1/16] and is close to 0.",
+      "y is negative.",
+      "y is exactly 0.25.",
+      "y is in the range (1/16, 1/4]."
+    ],
+    "correct_index": 0,
+    "explanation": "The maximum value of the sigmoid derivative is 0.25. Since both inputs are far from 0, both derivatives are close to 0. Their product is positive, close to 0, and well within (0, 1/16]."
+  },
+  {
+    "id": "docx_q_112",
+    "unit": 3,
+    "question": "What is the role of Back-propagation Through Time (BPTT)?",
+    "options": [
+      "It computes the optimal sequence padding dynamically.",
+      "It computes exact tabular values of Markov Decision Processes.",
+      "It is a non-parametric clustering algorithm for sequences.",
+      "It is the method used to train recurrent neural networks by unrolling the computational graph over time."
+    ],
+    "correct_index": 3,
+    "explanation": "BPTT unrolls the RNN over the timesteps of the sequence, constructing a deep feed-forward computational graph, and computes gradients using the chain rule to update shared weights."
+  },
+  {
+    "id": "docx_q_67",
+    "unit": 1,
+    "question": "Which of the following is true about the ReLU activation function for positive inputs?",
+    "options": [
+      "For positive inputs, ReLU increases linearly.",
+      "It decreases exponentially to zero.",
+      "It saturates and approaches a value of 1.0.",
+      "It behaves identically to the sigmoid function."
+    ],
+    "correct_index": 0,
+    "explanation": "For positive inputs (x > 0), ReLU(x) = x, which increases linearly as x increases."
+  },
+  {
+    "id": "docx_q_102",
+    "unit": 3,
+    "question": "Which of the following is correct regarding recurrent neural networks (RNNs)?",
+    "options": [
+      "They incorporate information from previous timesteps/positions and are suitable for variable-length sequences.",
+      "They are only suitable for sequences of fixed, predefined lengths.",
+      "They require the number of features D to vary at each timestep.",
+      "They compute representations by projecting inputs into multiple parallel attention subspaces."
+    ],
+    "correct_index": 0,
+    "explanation": "RNNs maintain a recurrent hidden state that accumulates information step-by-step, making them suitable for sequential data of arbitrary lengths."
+  },
+  {
+    "id": "docx_q_82",
+    "unit": 1,
+    "question": "What is the effect of increasing the stride in a convolutional layer on the output size?",
+    "options": [
+      "It increases the spatial resolution of the output.",
+      "It increases the number of output channels/feature maps.",
+      "Increasing the stride reduces the spatial dimensions of the output.",
+      "It increases the number of trainable parameters in the layer."
+    ],
+    "correct_index": 2,
+    "explanation": "Stride is the step size with which the kernel slides over the image. A larger stride skips pixels, reducing the output height/width."
+  },
+  {
+    "id": "docx_q_74",
+    "unit": 1,
+    "question": "What is the derivative of the ReLU activation function for positive inputs?",
+    "options": [
+      "It decreases exponentially.",
+      "It is 0.",
+      "It is equal to the input value.",
+      "Its derivate is 1 for positive inputs."
+    ],
+    "correct_index": 3,
+    "explanation": "For x > 0, the function is f(x) = x, so its derivative with respect to x is constant at 1."
+  },
+  {
+    "id": "docx_q_98",
+    "unit": 2,
+    "question": "What is the primary cause of the vanishing gradient problem in deep networks?",
+    "options": [
+      "Repeated multiplication of gradients smaller than 1 (chain rule) through deep layers.",
+      "Setting the discount factor gamma to 1.",
+      "Normalizing activations using mini-batch statistics.",
+      "Using too many ReLU activation layers."
+    ],
+    "correct_index": 0,
+    "explanation": "The backpropagation algorithm uses the chain rule, multiplying derivatives layer by layer. If activation function derivatives are less than 1 (e.g. sigmoid max is 0.25), repeated multiplication causes the gradient to shrink exponentially toward the early layers."
+  },
+  {
+    "id": "docx_q_24",
+    "unit": 1,
+    "question": "What is the defining characteristic of sequence data?",
+    "options": [
+      "The sample dimension must always equal the feature dimension.",
+      "The data must be independent and identically distributed.",
+      "All values must be binary integers.",
+      "Typically, there is some sort of order in the data (time, position, etc.)."
+    ],
+    "correct_index": 3,
+    "explanation": "Sequence data is characterized by the ordered nature of its points. The position of an element relative to others (temporal or positional order) carries meaning."
+  },
+  {
+    "id": "docx_q_165",
+    "unit": 6,
+    "question": "Why is Deep Q-learning (DQN) preferred over tabular Q-learning?",
+    "options": [
+      "DQN is simpler to implement and requires less memory.",
+      "Tabular Q-learning becomes computationally infeasible for large or continuous state spaces, requiring DQN to approximate Q-values using neural networks.",
+      "DQN guarantees finding the global minimum in a single step.",
+      "DQN does not require reward signals or actions."
+    ],
+    "correct_index": 1,
+    "explanation": "If the state space is massive (e.g. pixels in Atari), a Q-table cannot fit in memory. DQN uses a neural network as a function approximator to generalize across similar states."
+  },
+  {
+    "id": "docx_q_158",
+    "unit": 6,
+    "question": "In a Markov Decision Process (MDP), which of the following is correct regarding rewards?",
+    "options": [
+      "Rewards are only given at the end of an episode.",
+      "Rewards must always be strictly positive integers.",
+      "Rewards can be positive, negative, or zero, and are associated with transitions from one state to another.",
+      "Rewards must always be strictly negative to act as penalties."
+    ],
+    "correct_index": 2,
+    "explanation": "In an MDP, rewards are real-valued scalar feedback signals. They can be positive (incentives), negative (costs), or zero, and are received upon transitioning between states."
+  },
+  {
+    "id": "docx_q_154",
+    "unit": 5,
+    "question": "Which of the following is correct regarding SMILES representations?",
+    "options": [
+      "SMILES is a parametric molecular clustering algorithm.",
+      "SMILES is a line notation sequence representation, it is not the only format, and a molecule can have multiple valid SMILES strings.",
+      "Each molecule has exactly one unique, unalterable SMILES representation.",
+      "SMILES strings can fully represent 3D conformations of molecules."
+    ],
+    "correct_index": 1,
+    "explanation": "SMILES represents chemical structures as text sequences. Because there are different ways to traverse a molecular graph, a single molecule can be written as multiple different SMILES strings unless normalized (canonicalized)."
+  },
+  {
+    "id": "docx_q_46",
+    "unit": 1,
+    "question": "You are given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(100) * σ'(10). What is correct about y?",
+    "options": [
+      "y is close to 0.25.",
+      "y can be negative.",
+      "y is greater than 0.25.",
+      "y is in the range (0,1/4] and is close to 0."
+    ],
+    "correct_index": 3,
+    "explanation": "Since σ'(z) is always positive and has a maximum of 0.25, the product is in the range (0, 0.25]. Because 10 and 100 are large inputs where the sigmoid saturates, both derivatives are small, so y is close to 0."
+  },
+  {
+    "id": "docx_q_138",
+    "unit": 4,
+    "question": "Assume a language modeling scenario with dictionary size 900, embedding size 250, and hidden size 200. Which of the following is correct regarding a single model input?",
+    "options": [
+      "The output values are unbounded continuous variables.",
+      "The model output are probabilities that sum up to 1, and the decoder results in an output of size 900.",
+      "The decoder results in an output vector of size 200.",
+      "The encoder and decoder matrices must have the same number of parameters."
+    ],
+    "correct_index": 1,
+    "explanation": "The decoder projects hidden states of size 200 to a dictionary size of 900. Softmax ensures the outputs are valid probabilities that sum to 1."
+  },
+  {
+    "id": "docx_q_3",
+    "unit": 1,
+    "question": "Which of the following statements about tabular data properties is correct?",
+    "options": [
+      "Tabular data might contain duplicate rows.",
+      "Tabular data requires all columns to have identical values.",
+      "Tabular data is only suitable for unsupervised learning tasks.",
+      "Tabular data is prohibited from containing duplicate rows."
+    ],
+    "correct_index": 0,
+    "explanation": "Tabular data may contain duplicate rows if identical observations are recorded or if the dataset has redundant entries."
+  },
+  {
+    "id": "docx_q_85",
+    "unit": 1,
+    "question": "What is weight sharing in convolutional neural network layers?",
+    "options": [
+      "It is the sharing of parameters between different mini-batches.",
+      "It means that the weights are normalized to sum to 1 during training.",
+      "It is about using the same weights for the encoder and decoder matrices.",
+      "It is about applying the kernel to all image positions while keeping the weights the same."
+    ],
+    "correct_index": 3,
+    "explanation": "Weight sharing means that a single set of kernel weights (filter) is applied across all positions of the input image, drastically reducing the parameters compared to fully connected layers."
+  },
+  {
+    "id": "docx_q_29",
+    "unit": 1,
+    "question": "In regression, which of the following is true regarding the target value?",
+    "options": [
+      "The target value is restricted to the interval (0, 1).",
+      "The target value can be an integer.",
+      "The target value must be a string class label.",
+      "The target value must be strictly positive."
+    ],
+    "correct_index": 1,
+    "explanation": "Regression targets are continuous numerical variables. They can be integers (e.g. predicting count values) or floating-point values."
+  },
+  {
+    "id": "docx_q_11",
+    "unit": 1,
+    "question": "Which of the following is true regarding an RGB 8-bit image?",
+    "options": [
+      "It contains 8 color channels representing different luminance values.",
+      "It can be converted to grayscale without additional information.",
+      "It has a color depth of 2^24 channels per pixel.",
+      "It cannot be converted to grayscale without an external lookup table."
+    ],
+    "correct_index": 1,
+    "explanation": "An RGB image can be converted to grayscale using standard mathematical formulas (like averaging channels or weighted luminance formulas) using only the pixel values."
+  },
+  {
+    "id": "docx_q_2",
+    "unit": 1,
+    "question": "Which of the following is true regarding features and samples in tabular data?",
+    "options": [
+      "Columns in a table are called samples, and rows are called features.",
+      "Features are represented as rows, and samples are represented as columns.",
+      "The number of samples must always exceed the number of features.",
+      "There can be more features than samples in tabular data."
+    ],
+    "correct_index": 3,
+    "explanation": "In tabular data, columns represent features and rows represent samples. There is no mathematical restriction preventing a dataset from having more features (columns) than samples (rows), which is common in domains like genomics."
+  },
+  {
+    "id": "docx_q_96",
+    "unit": 2,
+    "question": "What characterizes non-convex functions in deep learning?",
+    "options": [
+      "They guarantee that gradient descent will find the global minimum in a single step.",
+      "They always have an analytical closed-form solution.",
+      "They can have several local minima, usually appear when training neural networks, and require iterative methods.",
+      "They are too simple to represent complex tabular data patterns."
+    ],
+    "correct_index": 2,
+    "explanation": "Neural network loss surfaces are non-convex due to non-linear activations and nesting. They have multiple local minima, saddles, and plateaus, requiring iterative optimization (like gradient descent) without a guaranteed global minimum."
+  },
+  {
+    "id": "docx_q_118",
+    "unit": 3,
+    "question": "What is the role of the output gate in an LSTM cell?",
+    "options": [
+      "It will determine the next hidden state of the LSTM.",
+      "It computes the classification probabilities over the dictionary.",
+      "It controls what information to discard from the cell state.",
+      "It normalizes the input features to have zero mean."
+    ],
+    "correct_index": 0,
+    "explanation": "The output gate regulates how much of the current cell state is revealed. The next hidden state h_t is computed by passing the cell state through tanh and multiplying it element-wise by the output gate activation."
+  },
+  {
+    "id": "docx_q_168",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 6x6 grid. Actions are up, down, left, right. Each step has a reward of -1. Reaching the target gives +1. What is correct about this scenario?",
+    "options": [
+      "The optimal reward is constant at +1.",
+      "The agent is guaranteed to reach the target in 12 steps.",
+      "With a bad policy, it might happen that the target destination is not reached at all.",
+      "The number of states is 36, and the optimal path always takes 6 steps."
+    ],
+    "correct_index": 2,
+    "explanation": "Without exploration or a proper policy, the agent could wander indefinitely or get stuck, meaning it might never reach the target."
+  },
+  {
+    "id": "docx_q_72",
+    "unit": 1,
+    "question": "What is the derivative of the ReLU activation function for negative inputs?",
+    "options": [
+      "For negative inputs, the derivate is 0.",
+      "It is undefined.",
+      "It is constant at 1.0.",
+      "It is a small positive value alpha."
+    ],
+    "correct_index": 0,
+    "explanation": "For negative inputs (x < 0), ReLU is constant at 0, so its derivative is exactly 0."
+  },
+  {
+    "id": "docx_q_166",
+    "unit": 6,
+    "question": "In Q-learning, an action must be taken to update the Q-values. Which of the following statements are true?",
+    "options": [
+      "The action selection is strictly restricted to deterministic choices.",
+      "The action can be chosen randomly (exploration) or based on the highest Q-value (exploitation).",
+      "Selecting suboptimal actions has no effect on training.",
+      "Exploration is always turned off during training."
+    ],
+    "correct_index": 1,
+    "explanation": "To learn the optimal values, Q-learning balances exploration (choosing random actions using e.g. epsilon-greedy) and exploitation (choosing max Q(s, a))."
+  },
+  {
+    "id": "docx_q_116",
+    "unit": 3,
+    "question": "Which of the following statements are true about gating/gates in an LSTM?",
+    "options": [
+      "The parameters of the gates are optimized during training.",
+      "Gates are only active during the testing phase.",
+      "Gates have fixed, non-trainable parameter weights.",
+      "Gates use ReLU activations to output binary states."
+    ],
+    "correct_index": 0,
+    "explanation": "Gates in an LSTM contain weights and biases (like regular layers) that are learned via gradient descent during training to optimize information flow."
+  },
+  {
+    "id": "docx_q_139",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where dictionary size is 5000, embedding size is 400, and hidden representation size is 400. What is correct about the parameter matrices?",
+    "options": [
+      "The encoder and decoder matrices have equally many parameters.",
+      "The model does not require a decoder matrix.",
+      "The decoder matrix has 200,000 parameters.",
+      "The encoder matrix has more parameters than the decoder matrix."
+    ],
+    "correct_index": 0,
+    "explanation": "The encoder projects dictionary index (5000) to embedding (400), with size 5000 * 400. The decoder projects hidden state (400) to dictionary size (5000), with size 400 * 5000. Both matrices contain exactly 2,000,000 parameters."
+  },
+  {
+    "id": "docx_q_88",
+    "unit": 1,
+    "question": "The convolution of a 12x12 image with 4 feature maps (channels) with 2 kernels of size 3x3 (no padding) produces how many output feature maps?",
+    "options": [
+      "2 feature maps",
+      "12 feature maps",
+      "8 feature maps",
+      "4 feature maps"
+    ],
+    "correct_index": 0,
+    "explanation": "Applying 2 kernels produces exactly 2 output feature maps (channels), with a resolution of 12 - 3 + 1 = 10x10 each."
+  },
+  {
+    "id": "docx_q_1",
+    "unit": 1,
+    "question": "Regarding the representation of tabular data, which of the following statements is correct?",
+    "options": [
+      "Each row in a tabular dataset represents a single feature dimension.",
+      "Tabular data is strictly limited to 1D continuous parameters and cannot represent multi-dimensional features.",
+      "Tabular data features can never contain continuous numeric values.",
+      "In principle, images can be stored in tabular form."
+    ],
+    "correct_index": 3,
+    "explanation": "Images are represented as pixel grids, which can be flattened into a single row of pixel intensity features, meaning images can indeed be stored in tabular form."
+  },
+  {
+    "id": "docx_q_97",
+    "unit": 2,
+    "question": "Which activation functions can be used to mitigate the vanishing gradient problem?",
+    "options": [
+      "Hardsigmoid and Tanh.",
+      "Standard linear scaling functions.",
+      "Leaky ReLU, ReLU, and SELU.",
+      "Sigmoid and Tanh."
+    ],
+    "correct_index": 2,
+    "explanation": "Activations like ReLU and its variants (Leaky ReLU, SELU) have a derivative of 1 (or close to 1) for positive inputs, which prevents gradients from shrinking exponentially during backpropagation."
+  },
+  {
+    "id": "docx_q_147",
+    "unit": 5,
+    "question": "What are typical challenges in traditional drug discovery?",
+    "options": [
+      "QSAR models can only predict classification classes.",
+      "It is very cheap, but success rates are extremely low.",
+      "It is an extremely expensive, long, and time-consuming process with low success rates.",
+      "Molecules are too small to be represented computationally."
+    ],
+    "correct_index": 2,
+    "explanation": "Traditional drug discovery takes around 10-15 years, costs over $2.6 billion per approved drug, and has a very low success rate (only 1 out of 10,000 starting compounds makes it to approval)."
+  },
+  {
+    "id": "docx_q_7",
+    "unit": 1,
+    "question": "Which of the following describes the structure of tabular data?",
+    "options": [
+      "It is structured as a tree where each node represents a sample and each edge a feature.",
+      "It consists of samples that contain information on a fixed set of properties/features.",
+      "It consists of samples that contain information on a variable set of properties/features.",
+      "It is composed of continuous pixel intensities with variable channel depths."
+    ],
+    "correct_index": 1,
+    "explanation": "Tabular data is defined by a schema with a fixed number of columns, meaning every sample contains information on the same fixed set of properties/features."
+  },
+  {
+    "id": "docx_q_149",
+    "unit": 5,
+    "question": "What is the primary objective of the drug discovery process?",
+    "options": [
+      "To sequence the human genome in a single step.",
+      "It is about finding molecules that act on targets, which takes many years and is extremely extensive.",
+      "To compile LaTeX masterplans into PDF files.",
+      "To train reinforcement learning agents in a 5x5 grid environment."
+    ],
+    "correct_index": 1,
+    "explanation": "Drug discovery aims to identify chemical compounds (ligands) that bind to specific disease-associated proteins (targets) to modulate their function."
+  },
+  {
+    "id": "docx_q_107",
+    "unit": 3,
+    "question": "Assume you have a sequence of 20 elements, and each element has 5 features. Further assume that you have a standard, single-layer RNN with a hidden state size of 10. What is the size of the first RNN output?",
+    "options": [
+      "100",
+      "5",
+      "20",
+      "10"
+    ],
+    "correct_index": 3,
+    "explanation": "The size of the output vector at any individual timestep is determined by the hidden representation dimension, which is 10."
+  },
+  {
+    "id": "docx_q_172",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 5x5 grid. Target gives positive reward. Move actions give 0 reward. Off-grid transitions are blocked. What is correct about optimal policies in this environment?",
+    "options": [
+      "The number of states of an optimal policy is 5*5*5*5 = 625, there are multiple optimal policies, and all target-reaching policies have the same reward.",
+      "All optimal policies must take the same number of steps.",
+      "The maximum number of states is 25.",
+      "There is only one unique optimal policy."
+    ],
+    "correct_index": 0,
+    "explanation": "Since there is no step penalty (reward is 0 for moves), any path that eventually reaches the target without hitting a boundary penalty receives the same positive reward. Thus, all target-reaching policies have the same reward, and many are optimal. The state space of (agent_pos, target_pos) is 25 * 25 = 625."
+  },
+  {
+    "id": "docx_q_91",
+    "unit": 1,
+    "question": "The convolution of a 6x6 image with 3 feature maps (channels) with a single kernel of size 3x3 (no padding) produces how many output feature maps?",
+    "options": [
+      "18 feature maps",
+      "3 feature maps",
+      "9 feature maps",
+      "1 feature map"
+    ],
+    "correct_index": 3,
+    "explanation": "Using 1 kernel produces exactly 1 output feature map. The resolution is 6 - 3 + 1 = 4x4."
+  },
+  {
+    "id": "docx_q_34",
+    "unit": 1,
+    "question": "In machine learning training, how is empirical risk/error defined?",
+    "options": [
+      "It is defined as the expected error on the training data.",
+      "It is the maximum error achieved during validation.",
+      "It is the expected error calculated on the test dataset.",
+      "It is the probability that the loss function is non-convex."
+    ],
+    "correct_index": 0,
+    "explanation": "Empirical risk is the average loss computed over the training dataset, which we minimize using Empirical Risk Minimization (ERM)."
+  },
+  {
+    "id": "docx_q_151",
+    "unit": 5,
+    "question": "What is the concept of Virtual Screening (VS) in drug discovery?",
+    "options": [
+      "It is the physical synthesis of molecules using robotic arms.",
+      "It is the evaluation of Casp GDT metrics on physical targets.",
+      "It is an unsupervised clustering of molecules based on their SMILES strings.",
+      "In VS, a trained computational model predicts whether database molecules are likely to bind with a target of interest."
+    ],
+    "correct_index": 3,
+    "explanation": "Virtual screening uses computational filters (like molecular docking or machine learning classifiers) to screen databases of virtual molecules in-silico, identifying promising hits."
+  },
+  {
+    "id": "docx_q_35",
+    "unit": 1,
+    "question": "What determines whether empirical risk is straightforward to calculate?",
+    "options": [
+      "It is straightforward to calculate if the loss function was chosen wisely.",
+      "It requires the transition probabilities of the environment.",
+      "It depends on the number of GPUs used.",
+      "It is only calculable if the training set size is prime."
+    ],
+    "correct_index": 0,
+    "explanation": "If the loss function is mathematically well-defined and differentiable, calculating its average over the training samples (empirical risk) is direct and computationally efficient."
+  },
+  {
+    "id": "docx_q_77",
+    "unit": 1,
+    "question": "What is correct about the derivative of the tanh activation function for very large positive inputs?",
+    "options": [
+      "Its derivative value is small for very large positive inputs.",
+      "It is negative.",
+      "It grows linearly.",
+      "It is constant at 1."
+    ],
+    "correct_index": 0,
+    "explanation": "As the input to tanh becomes very large, the function saturates close to 1. The slope of the curve becomes almost flat, meaning the derivative approaches 0."
+  },
+  {
+    "id": "docx_q_137",
+    "unit": 4,
+    "question": "Assume a language modeling scenario with dictionary size 1000, embedding size 150, and hidden size 100. Which of the following is correct regarding a single model input?",
+    "options": [
+      "The model output represents probabilities summing to 1, and the decoder output size is 1000.",
+      "The model output is a single scalar loss value.",
+      "The encoder output size is 1000.",
+      "The number of parameters in the encoder is 150,000."
+    ],
+    "correct_index": 0,
+    "explanation": "The model uses softmax at the output, producing a probability distribution of size 1000 (dictionary size) where values sum to 1. The decoder matrix output size is indeed 1000."
+  },
+  {
+    "id": "docx_q_53",
+    "unit": 1,
+    "question": "How are parameters typically initialized in gradient descent?",
+    "options": [
+      "They must always be initialized to exactly 1.0.",
+      "They are initialized using the target labels.",
+      "They must be initialized to the mean of the training data features.",
+      "The initial starting value of a parameter can be chosen randomly."
+    ],
+    "correct_index": 3,
+    "explanation": "In deep learning, parameters (weights) are initialized randomly (e.g. Xavier or He initialization) to break symmetry and allow the network to learn diverse features."
+  },
+  {
+    "id": "docx_q_141",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where dictionary size is 2000, embedding size is 300, and hidden representation size is 300. Which of the following is true?",
+    "options": [
+      "The output of the language model is a vector of size 300.",
+      "The model output are probabilities that sum up to 1, and the output vector is of size 2000.",
+      "The output values can be negative real numbers.",
+      "The decoder has 900,000 parameters."
+    ],
+    "correct_index": 1,
+    "explanation": "The output is a probability vector over the dictionary (size 2000), so the values must be in (0, 1) and sum up to 1."
+  },
+  {
+    "id": "docx_q_19",
+    "unit": 1,
+    "question": "What is a potential negative side-effect of data augmentation if applied improperly?",
+    "options": [
+      "It converts non-convex functions to convex ones.",
+      "It forces the model to use L1 regularization.",
+      "It can potentially have a negative impact on the model performance.",
+      "It always reduces the training time to zero."
+    ],
+    "correct_index": 2,
+    "explanation": "If the augmentation is too aggressive or changes the class semantics (e.g. rotating digit '9' by 180 degrees makes it look like '6'), the model will learn incorrect associations, reducing performance."
+  },
+  {
+    "id": "docx_q_144",
+    "unit": 4,
+    "question": "What is the primary function of Self-Attention in Transformers?",
+    "options": [
+      "It forces the model to ignore word order and focus on average sentence length.",
+      "It normalizes inputs to have zero mean and unit variance.",
+      "Self-attention allows the model to learn contextual information in parallel using keys, queries, and values.",
+      "It acts as a linear classifier to categorize input documents."
+    ],
+    "correct_index": 2,
+    "explanation": "Self-attention calculates attention scores between every pair of tokens in a sequence, allowing the model to dynamically contextualize each word based on its relationship to all other words."
+  },
+  {
+    "id": "docx_q_121",
+    "unit": 3,
+    "question": "Which of the following statements is/are true about the one-to-one RNN type?",
+    "options": [
+      "It maps a sequence of inputs to a single categorical class.",
+      "Given an input of length Tx > 1, the output length is Ty = 1.",
+      "It generates a sequence of outputs from a single static representation.",
+      "Given an input of length Tx = 1, the output/prediction length is Ty = 1."
+    ],
+    "correct_index": 3,
+    "explanation": "A one-to-one architecture represents a standard feed-forward network without temporal recurrence: a single input vector (Tx=1) is mapped to a single output vector (Ty=1)."
+  },
+  {
+    "id": "docx_q_75",
+    "unit": 1,
+    "question": "For non-negative inputs (x >= 0), what does ReLU equate to?",
+    "options": [
+      "A log-probability distribution.",
+      "A sigmoid function.",
+      "For non-negative inputs, ReLU equates to the identity function.",
+      "A constant zero output."
+    ],
+    "correct_index": 2,
+    "explanation": "For any input x >= 0, ReLU(x) = max(0, x) = x, which is the identity function."
+  },
+  {
+    "id": "docx_q_78",
+    "unit": 1,
+    "question": "At what input value does the tanh activation function achieve its maximum derivative value?",
+    "options": [
+      "The maximum value of the derivative is obtained for input 0.",
+      "At negative infinity.",
+      "At input 1.0.",
+      "At positive infinity."
+    ],
+    "correct_index": 0,
+    "explanation": "The derivative of tanh is 1 - tanh^2(x). Since tanh(0) = 0, the derivative at x=0 is 1.0, which is its maximum possible value. For any non-zero input, the derivative is less than 1."
+  },
+  {
+    "id": "docx_q_128",
+    "unit": 4,
+    "question": "Which of the following statements are true about RNN language models?",
+    "options": [
+      "The decoder matrix contains the same parameters as the RNN matrix.",
+      "The training loss is typically measured using cross-entropy, representing a regression task.",
+      "They do not require input representation layers.",
+      "An encoder is used to represent each word via a word embedding."
+    ],
+    "correct_index": 3,
+    "explanation": "RNN language models first pass the discrete input words (indices) through an embedding layer (encoder) to get dense vectors before feeding them to the recurrent cells."
+  },
+  {
+    "id": "docx_q_68",
+    "unit": 1,
+    "question": "What is a primary computational advantage of the ReLU activation function?",
+    "options": [
+      "It computes eigenvalues of the weight matrix.",
+      "ReLU is computationally cheap.",
+      "It is bounded between -1 and +1.",
+      "It requires calculating exponential terms."
+    ],
+    "correct_index": 1,
+    "explanation": "ReLU is computationally very cheap because it only requires a simple thresholding operation at 0 (a max(0, x) comparison) with no expensive operations like exponentials."
+  },
+  {
+    "id": "docx_q_59",
+    "unit": 1,
+    "question": "Which of the following is correct regarding the forward pass in a neural network layer?",
+    "options": [
+      "The input is added to bias weights and then passed to the output layer directly.",
+      "Linear layers are stacked without non-linearities to capture complex manifolds.",
+      "The input vector is multiplied by a weight matrix, added to bias weights and passed through an element-wise non-linearity.",
+      "The input is passed through a non-linearity first, then multiplied by weights."
+    ],
+    "correct_index": 2,
+    "explanation": "The standard forward pass computes a linear transformation first (Wx + b) and then applies an element-wise activation function f(Wx + b)."
+  },
+  {
+    "id": "docx_q_90",
+    "unit": 1,
+    "question": "The convolution of a 8x8 image with 1 feature map (channel) with 2 kernels of size 4x4 (no padding) produces which output?",
+    "options": [
+      "an output with 4 feature maps.",
+      "an output with 1 feature map.",
+      "an output with 8 feature maps.",
+      "an output with 2 feature maps."
+    ],
+    "correct_index": 3,
+    "explanation": "The 2 kernels produce exactly 2 output feature maps (channels), each with a resolution of 8 - 4 + 1 = 5x5."
+  },
+  {
+    "id": "docx_q_44",
+    "unit": 1,
+    "question": "You are given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(-400) * σ'(300). Which of the following is correct?",
+    "options": [
+      "y is undefined.",
+      "y is close to 1.",
+      "y is exactly -0.25.",
+      "y is close to 0."
+    ],
+    "correct_index": 3,
+    "explanation": "Sigmoid derivative σ'(z) approaches 0 as z goes to positive or negative infinity. For z = -400 and z = 300, both terms are virtually 0, making the product close to 0."
+  },
+  {
+    "id": "docx_q_58",
+    "unit": 1,
+    "question": "What are the structural elements of a computational graph?",
+    "options": [
+      "It consists of nodes and edges.",
+      "Epochs, batches, and loss functions.",
+      "Train, validation, and test datasets.",
+      "Weights, biases, and activations."
+    ],
+    "correct_index": 0,
+    "explanation": "Like any graph structure, a computational graph consists of vertices (nodes) representing operations or variables, and directed edges representing the flow of tensors between them."
+  },
+  {
+    "id": "docx_q_61",
+    "unit": 1,
+    "question": "Which of the following is true about neural network architectures in general?",
+    "options": [
+      "In principle, we can stack an arbitrary number of hidden layers.",
+      "Hidden layers must decrease in size monotonically.",
+      "The number of hidden layers must equal the input feature size.",
+      "We are limited to exactly three hidden layers."
+    ],
+    "correct_index": 0,
+    "explanation": "Neural networks are modular. In principle, we can stack as many hidden layers as we want (making the network deeper) to represent increasingly abstract features."
+  },
+  {
+    "id": "docx_q_55",
+    "unit": 1,
+    "question": "What optimization challenge can occur when training neural networks with gradient descent?",
+    "options": [
+      "The parameters will be normalized to sum to 1.",
+      "The model will always find the global minimum immediately.",
+      "The learning rate will automatically decay to negative values.",
+      "Gradient descent might get stuck at a local minimum."
+    ],
+    "correct_index": 3,
+    "explanation": "In complex, non-convex loss landscapes, the optimization path may lead to a basin where the gradient is zero, trapping the model in a local minimum."
+  },
+  {
+    "id": "docx_q_70",
+    "unit": 1,
+    "question": "How does ReLU compare to Leaky ReLU for positive inputs?",
+    "options": [
+      "For positive inputs, ReLU is equivalent to Leaky ReLU (both are the identity function).",
+      "Leaky ReLU has a smaller slope for positive inputs.",
+      "ReLU has a slope of 0.01 for positive inputs.",
+      "ReLU saturates while Leaky ReLU does not."
+    ],
+    "correct_index": 0,
+    "explanation": "Both ReLU and Leaky ReLU are defined as f(x) = x for x > 0. They only differ for negative inputs (where ReLU is 0 and Leaky ReLU has a small positive slope)."
+  },
+  {
+    "id": "docx_q_171",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 4x4 grid. Actions are up, down, left, right. Each step has a reward of -1. Reaching the target gives +10. What is correct about the steps of the optimal policy?",
+    "options": [
+      "The maximum number of steps of an optimal policy is 16.",
+      "The maximum number of steps is 4, and the minimum is 1.",
+      "The optimal policy always takes exactly 3 steps.",
+      "The maximum number of steps of an optimal policy is 6, and the minimum is 0."
+    ],
+    "correct_index": 3,
+    "explanation": "On a 4x4 grid, if the agent is placed directly on the target, the shortest path is 0 steps. The maximum Manhattan distance between any two cells is 6 steps (3 horizontal + 3 vertical). Thus, the optimal policy's steps range from 0 to 6."
+  },
+  {
+    "id": "docx_q_52",
+    "unit": 1,
+    "question": "What type of optimization method is gradient descent?",
+    "options": [
+      "It is an iterative method.",
+      "A heuristic search method that does not use derivatives.",
+      "A non-parametric clustering method.",
+      "An analytical one-step method."
+    ],
+    "correct_index": 0,
+    "explanation": "Gradient descent is an iterative algorithm: it starts with an initial guess and repeatedly refines the parameters step-by-step using gradient information until convergence."
+  },
+  {
+    "id": "docx_q_94",
+    "unit": 2,
+    "question": "What is the primary purpose of data normalization in machine learning?",
+    "options": [
+      "To convert non-convex loss surfaces into convex shapes.",
+      "To deactivate a random percentage of weights during training.",
+      "To map categorical labels to float values.",
+      "Data normalization is used to standardize the range of features and can improve model performance."
+    ],
+    "correct_index": 3,
+    "explanation": "Normalizing inputs (scaling features to a standard range) prevents features with large magnitudes from dominating, stabilizes gradients, and accelerates optimization."
+  },
+  {
+    "id": "docx_q_89",
+    "unit": 1,
+    "question": "The convolution of a 16x16 image with 2 feature maps (channels) with 3 kernels of size 8x8 (no padding) produces an output with how many feature maps?",
+    "options": [
+      "9 feature maps",
+      "6 feature maps",
+      "2 feature maps",
+      "3 feature maps"
+    ],
+    "correct_index": 3,
+    "explanation": "The output channel count equals the number of kernels, which is 3. The output resolution is 16 - 8 + 1 = 9x9."
+  },
+  {
+    "id": "docx_q_9",
+    "unit": 1,
+    "question": "What is an inevitable consequence of using dimensionality reduction techniques like PCA or t-SNE?",
+    "options": [
+      "The model will gain additional features without losing any variance.",
+      "The data will be converted to a binary matrix with zero variance.",
+      "Information will be lost by downprojecting data to for example 2 dimensions.",
+      "The number of samples will be reduced to match the number of dimensions."
+    ],
+    "correct_index": 2,
+    "explanation": "Reducing high-dimensional spaces to lower dimensions (like 2D or 3D) compresses the data, which mathematically guarantees that some information or variance is lost."
+  },
+  {
+    "id": "docx_q_33",
+    "unit": 1,
+    "question": "What is the typical objective when optimizing a loss function?",
+    "options": [
+      "Typically, the higher the loss, the better the prediction.",
+      "Typically, the lower the loss, the better the prediction.",
+      "To keep the loss value strictly equal to 1.0.",
+      "To maximize the variance of the loss values."
+    ],
+    "correct_index": 1,
+    "explanation": "A loss of 0 means perfect prediction. Therefore, the optimization goal is to minimize the loss, meaning lower loss corresponds to better predictions."
+  },
+  {
+    "id": "docx_q_16",
+    "unit": 1,
+    "question": "What is the primary operational goal of data augmentation?",
+    "options": [
+      "To scale all input features between -1 and 1.",
+      "To physically collect new real-world data samples.",
+      "To label unlabeled data using cluster assignments.",
+      "Data augmentation is useful to artificially create more samples."
+    ],
+    "correct_index": 3,
+    "explanation": "Data augmentation creates synthetic variants of existing training data (e.g. by mirroring, scaling, or adding noise), which artificially increases the size and diversity of the dataset."
+  },
+  {
+    "id": "docx_q_143",
+    "unit": 4,
+    "question": "What is a major advantage of Transformer models over RNN-based language models?",
+    "options": [
+      "Transformers process sequences sequentially, saving parameter footprint.",
+      "RNN-based models cannot be computed in parallel, whereas Transformers allow parallel training computations.",
+      "Transformers do not require embedding layers for text inputs.",
+      "Transformers have linear O(T) complexity with sequence length T."
+    ],
+    "correct_index": 1,
+    "explanation": "Because RNNs must process tokens step-by-step, they cannot be parallelized easily. Transformers use self-attention to process all sequence tokens simultaneously, enabling parallel GPU training."
+  },
+  {
+    "id": "docx_q_83",
+    "unit": 1,
+    "question": "Does stride affect the spatial dimensions of the output of a convolutional layer?",
+    "options": [
+      "No, it only affects the channel size.",
+      "No, output dimensions are solely determined by padding.",
+      "Increasing the stride affects the output dimensions.",
+      "It only changes the number of kernels."
+    ],
+    "correct_index": 2,
+    "explanation": "The output size formula is (W - K + 2P)/S + 1. Since stride S is in the denominator, increasing the stride directly changes (decreases) the output dimensions."
+  },
+  {
+    "id": "docx_q_28",
+    "unit": 1,
+    "question": "What paradigm does classification fall under?",
+    "options": [
+      "we are dealing with a supervised machine learning scenario.",
+      "Markov Decision Processes.",
+      "Unsupervised clustering.",
+      "Model-free reinforcement learning."
+    ],
+    "correct_index": 0,
+    "explanation": "Classification is a supervised learning scenario because it requires a dataset of samples with corresponding ground-truth target labels to train the model."
+  },
+  {
+    "id": "docx_q_18",
+    "unit": 1,
+    "question": "What is the relationship between data augmentation and model robustness?",
+    "options": [
+      "Data augmentation might increase the robustness of a model.",
+      "Robustness is only achieved by reducing the number of layers.",
+      "Data augmentation has no effect on validation error.",
+      "Data augmentation reduces the model's capacity to handle noisy inputs."
+    ],
+    "correct_index": 0,
+    "explanation": "Training on augmented data makes the model invariant to small perturbations (like shift, rotation, or noise), thereby increasing its robustness to unseen variations at test time."
+  },
+  {
+    "id": "docx_q_5",
+    "unit": 1,
+    "question": "Which of the following is true about how feature vectors are obtained from tabular data?",
+    "options": [
+      "Feature vectors can directly be obtained from the table.",
+      "Feature vectors are only defined for the target labels, not the samples.",
+      "Each column vector in the table is called a sample feature vector.",
+      "Feature vectors cannot be directly obtained from tabular data and require deep neural network processing first."
+    ],
+    "correct_index": 0,
+    "explanation": "A feature vector represents the properties of a sample. In tabular data, each row corresponds to a sample's features, so feature vectors can be directly read from the rows."
+  },
+  {
+    "id": "docx_q_25",
+    "unit": 1,
+    "question": "Which of the following is correct regarding representing arbitrary data as sequence data?",
+    "options": [
+      "Images cannot be represented as sequences under any circumstance.",
+      "Only natural language text can be represented as sequence data.",
+      "Every data can theoretically be represented as a sequence.",
+      "Tabular data has no sequence representation."
+    ],
+    "correct_index": 2,
+    "explanation": "Any data can be flattened or scanned in a structured order. For instance, an image can be scanned row-by-row or pixel-by-pixel, representing it as a sequence."
+  },
+  {
+    "id": "docx_q_41",
+    "unit": 1,
+    "question": "You are given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(2*x+25) with x=10. Which of the following is correct?",
+    "options": [
+      "y is greater than 0.5.",
+      "y is in the range (0,1/4] and is close to 0.",
+      "y is exactly 0.25.",
+      "y is a negative value."
+    ],
+    "correct_index": 1,
+    "explanation": "At x=10, the input to the derivative is 2*10+25 = 45. The derivative of sigmoid σ'(z) = σ(z)(1-σ(z)). Since σ(45) is extremely close to 1, the derivative σ'(45) = 1 * (0) which is close to 0. Since σ'(z) is always positive, y is in the range (0, 0.25]."
+  },
+  {
+    "id": "docx_q_64",
+    "unit": 1,
+    "question": "What is the function of activation functions in a multi-layered neural network?",
+    "options": [
+      "They normalize weights to have a unit sum.",
+      "Activation functions enable the stacking of multiple network layers (by introducing non-linearities).",
+      "They define the receptive field of convolutional layers.",
+      "They calculate the empirical risk of the dataset."
+    ],
+    "correct_index": 1,
+    "explanation": "By introducing non-linearities, activation functions prevent the collapse of stacked linear layers, enabling the network to learn deep hierarchical representations."
+  },
+  {
+    "id": "docx_q_51",
+    "unit": 1,
+    "question": "Which of the following is correct regarding local minima in gradient descent optimization?",
+    "options": [
+      "Local minima only occur in convex optimization problems.",
+      "It may converge to a local minimum.",
+      "Gradient descent always gets stuck at the initial starting value.",
+      "Gradient descent is mathematically guaranteed to find the global minimum of any function."
+    ],
+    "correct_index": 1,
+    "explanation": "For non-convex optimization problems (like neural network training), gradient descent can converge to a local minimum or a saddle point rather than the global minimum."
+  },
+  {
+    "id": "docx_q_134",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where you have a dictionary size of 12000, an embedding size of 350 and a hidden representation size of 300. What is the output size of the language model when considering a single input word?",
+    "options": [
+      "12000",
+      "350",
+      "4,200,000",
+      "300"
+    ],
+    "correct_index": 0,
+    "explanation": "The model output layer (decoder) outputs a classification probability vector over the entire vocabulary, which is of size 12000."
+  },
+  {
+    "id": "docx_q_148",
+    "unit": 5,
+    "question": "Which of the following is correct regarding a drug in pharmacology?",
+    "options": [
+      "A drug is a non-parametric model used in virtual screening.",
+      "A drug is any nutrient or dietary ingredient that has positive energy value.",
+      "A drug is a chemical substance which produces a biological effect in a living organism when administered.",
+      "A drug is a protein that is synthesized by ribosomes."
+    ],
+    "correct_index": 2,
+    "explanation": "In pharmacology, a drug is defined as a chemical substance of known structure, other than a nutrient or essential dietary ingredient, which produces a biological effect when administered."
+  },
+  {
+    "id": "docx_q_160",
+    "unit": 6,
+    "question": "Which of the following is true about the Markov property in an MDP?",
+    "options": [
+      "The transition probabilities change at every timestep.",
+      "The next state is completely independent of the current state.",
+      "The next state depends on all past states visited during the episode.",
+      "The current state completely characterizes the system, and the next state depends only on the current state and action."
+    ],
+    "correct_index": 3,
+    "explanation": "The Markov property states that the future is independent of the past given the present. The transition probability depends only on state s and action a, not on past history."
+  },
+  {
+    "id": "docx_q_42",
+    "unit": 1,
+    "question": "Given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(-400) * σ'(300), which of the following is correct?",
+    "options": [
+      "y is exactly 0.25.",
+      "y is close to 0 (and is a positive value).",
+      "y is a negative value.",
+      "y is greater than 1.0."
+    ],
+    "correct_index": 1,
+    "explanation": "Both -400 and 300 are far from the origin where the sigmoid function saturates. At these saturated regions, the derivative of sigmoid is positive but extremely close to 0. Multiplying them yields a positive value extremely close to 0."
+  },
+  {
+    "id": "docx_q_114",
+    "unit": 3,
+    "question": "What is the function of the Constant Error Carousel (CEC) in an LSTM cell?",
+    "options": [
+      "It mitigates the vanishing gradient problem by maintaining a constant error flow in the cell state.",
+      "It is an activation function that projects outputs to (-1, 1).",
+      "It computes Jaccard word similarities for text generation.",
+      "It is a gate that discards all activation energy."
+    ],
+    "correct_index": 0,
+    "explanation": "The core of the LSTM is the Constant Error Carousel (CEC). By using additive cell state updates, the error gradient can propagate backward indefinitely through time without scaling exponentially."
+  },
+  {
+    "id": "docx_q_10",
+    "unit": 1,
+    "question": "What is a primary use case of dimensionality reduction in exploratory data analysis?",
+    "options": [
+      "To solve convex optimization equations in a single step.",
+      "To automatically assign labels to unlabeled samples.",
+      "To increase the number of features before training deep neural networks.",
+      "Dimensionality reduction techniques are useful for visualizing high dimensional data."
+    ],
+    "correct_index": 3,
+    "explanation": "Dimensionality reduction algorithms map high-dimensional feature spaces to 2D or 3D, allowing humans to visually inspect clusters and patterns."
+  },
+  {
+    "id": "docx_q_123",
+    "unit": 3,
+    "question": "Which of the following statements are true about many-to-one RNN types?",
+    "options": [
+      "Given an input sequence of length Tx, the output/prediction length is always 1.",
+      "The output sequence length Ty can be greater than 1.",
+      "They are only suitable for tasks where the input length Tx is exactly 1.",
+      "They process the entire sequence in a single parallel step."
+    ],
+    "correct_index": 0,
+    "explanation": "Many-to-one RNNs process a sequence of inputs (Tx > 1) and output a single representation or classification prediction at the final step (Ty=1)."
+  },
+  {
+    "id": "docx_q_39",
+    "unit": 1,
+    "question": "What is a primary use of a test set in detecting model training issues?",
+    "options": [
+      "It allows to detect overfitting.",
+      "It is used to calculate the gradient updates.",
+      "It determines the learning rate decay schedule.",
+      "It helps initialize the random seed."
+    ],
+    "correct_index": 0,
+    "explanation": "By comparing the performance on the training set and the separate test set, we can identify if the model has simply memorized the training data (overfitting)."
+  },
+  {
+    "id": "docx_q_103",
+    "unit": 3,
+    "question": "Which of the following is correct regarding the weights of an RNN?",
+    "options": [
+      "For each timestep, the same (shared) weight matrix is used, and its size is independent of sequence length.",
+      "A different weight matrix is initialized for each individual timestep.",
+      "RNN weights are only updated during the forward pass.",
+      "The size of the weight matrix scales quadratically with the sequence length."
+    ],
+    "correct_index": 0,
+    "explanation": "To process sequences of arbitrary length, RNNs share the same weight matrices (W_hh, W_xh, W_hy) across all timesteps. This keeps the parameter count independent of the sequence length."
+  },
+  {
+    "id": "docx_q_27",
+    "unit": 1,
+    "question": "Can class labels or target values in classification be represented by numbers?",
+    "options": [
+      "No, classification outputs must be probability distributions only.",
+      "Only in regression can targets be numbers.",
+      "Yes, the target value can be a number.",
+      "No, targets in classification must always be text strings."
+    ],
+    "correct_index": 2,
+    "explanation": "Class labels are often encoded numerically (e.g. 0 for negative, 1 for positive, or integer class indices in multi-class classification) for mathematical convenience."
+  },
+  {
+    "id": "docx_q_100",
+    "unit": 2,
+    "question": "Which of the following activation functions are prone to the vanishing gradient problem?",
+    "options": [
+      "Only identity activations.",
+      "Sigmoid, Tanh, and Hardsigmoid.",
+      "Only softmax.",
+      "ReLU, Leaky ReLU, and SELU."
+    ],
+    "correct_index": 1,
+    "explanation": "Sigmoid, Tanh, and Hardsigmoid have activation derivatives that are strictly less than 1 (maximum derivative of sigmoid is 0.25, tanh is 1.0 but drops off quickly). They saturate for large inputs, causing gradients to vanish."
+  },
+  {
+    "id": "docx_q_12",
+    "unit": 1,
+    "question": "For an RGB 8-bit image, what does the 8-bit depth signify?",
+    "options": [
+      "The resolution of the image is restricted to 8x8 pixels.",
+      "The image is composed of 8 color channels.",
+      "Every channel can encode 2^8 different values.",
+      "The image has exactly 8 pixels in total."
+    ],
+    "correct_index": 2,
+    "explanation": "An 8-bit depth means that each of the three color channels (Red, Green, Blue) allocates 8 bits of memory per pixel, which allows representing 2^8 = 256 different intensity values per channel."
+  },
+  {
+    "id": "docx_q_54",
+    "unit": 1,
+    "question": "What is the relationship between the learning rate and parameter updates in gradient descent?",
+    "options": [
+      "The learning rate has no effect on the update magnitude.",
+      "A larger learning rate guarantees convergence in fewer iterations.",
+      "The learning rate changes the direction of the gradient vector.",
+      "The learning rate influences how much the value of a parameter changes."
+    ],
+    "correct_index": 3,
+    "explanation": "Since the update step is learning_rate * gradient, the learning rate scale directly determines the step size and how much the parameters change at each iteration."
+  },
+  {
+    "id": "docx_q_161",
+    "unit": 6,
+    "question": "What is correct about optimal policies in reinforcement learning?",
+    "options": [
+      "An optimal policy cannot be learned via Q-learning.",
+      "An optimal policy must always choose actions randomly.",
+      "There can be multiple optimal policies that achieve the same maximal expected return.",
+      "There is always exactly one unique optimal policy."
+    ],
+    "correct_index": 2,
+    "explanation": "While there is a unique optimal state-value function, there can be multiple different policies (action mappings) that achieve this optimal value."
+  },
+  {
+    "id": "docx_q_156",
+    "unit": 5,
+    "question": "What does the protein folding problem deal with?",
+    "options": [
+      "Predicting the 3D spatial structure of a protein based on its linear amino acid sequence.",
+      "Measuring the Jaccard distance between different SMILES strings.",
+      "Determining the Eroom's law curve for protein synthesis.",
+      "Predicting the amino acid sequence from the 3D structure of a protein."
+    ],
+    "correct_index": 0,
+    "explanation": "Proteins are chains of amino acids that fold into complex 3D shapes. The folding problem is the challenge of predicting this final 3D structure using only the linear sequence of amino acids."
+  },
+  {
+    "id": "docx_q_50",
+    "unit": 1,
+    "question": "What determines the direction of the parameter update step in gradient descent optimization?",
+    "options": [
+      "along the negative gradient of the loss with respect to the parameter.",
+      "Along a random orthogonal vector in parameter space.",
+      "Along the diagonal of the weight matrix.",
+      "Along the direction of the positive gradient of the loss."
+    ],
+    "correct_index": 0,
+    "explanation": "The negative gradient points in the direction of the steepest descent of the loss function. Therefore, updates subtract the gradient to minimize the loss."
+  },
+  {
+    "id": "docx_q_122",
+    "unit": 3,
+    "question": "Which of the following is true about many-to-many RNN architectures?",
+    "options": [
+      "The input length Tx must always equal the output length Ty.",
+      "The input sequence is processed in reverse order only.",
+      "The output sequence length Ty must always be 1.",
+      "Given an input of length Tx, the output/prediction length can be equal (Tx = Ty) or unequal (Tx ≠ Ty)."
+    ],
+    "correct_index": 3,
+    "explanation": "Many-to-many RNNs map a sequence input to a sequence output. The lengths can be equal (e.g. part-of-speech tagging where Tx=Ty) or unequal (e.g. encoder-decoder machine translation where Tx ≠ Ty)."
+  },
+  {
+    "id": "docx_q_30",
+    "unit": 1,
+    "question": "What is the defining property of regression target values?",
+    "options": [
+      "The target value is categorical.",
+      "The target value is numeric.",
+      "The target value is a probability distribution.",
+      "The target value is always an undirected graph."
+    ],
+    "correct_index": 1,
+    "explanation": "Regression models predict continuous numerical values (e.g. price, temperature), making the target value numeric."
+  },
+  {
+    "id": "docx_q_4",
+    "unit": 1,
+    "question": "What is the standard terminology for rows and columns in tabular data?",
+    "options": [
+      "Rows in the table are called samples, and columns are called features.",
+      "Rows in the table are called dimensions, and columns are called clusters.",
+      "Rows in the table are called features, and columns are called samples.",
+      "Rows in the table are called targets, and columns are called weights."
+    ],
+    "correct_index": 0,
+    "explanation": "In standard tabular data terminology, each row represents an individual sample (observation) and each column represents a feature (property)."
+  },
+  {
+    "id": "docx_q_117",
+    "unit": 3,
+    "question": "Which of the following statements is/are true about attention mechanisms in neural networks?",
+    "options": [
+      "Attention mechanisms cannot be combined with LSTM layers.",
+      "Attention mechanisms force the model to process sequences in reverse.",
+      "Attention mechanisms help the model to focus on relevant parts of the input sequence.",
+      "Attention is a form of parameter pruning."
+    ],
+    "correct_index": 2,
+    "explanation": "Attention mechanisms dynamically assign weights (importance scores) to different parts of the input sequence, allowing the model to focus on relevant context when making predictions."
+  },
+  {
+    "id": "docx_q_86",
+    "unit": 1,
+    "question": "The convolution of a 30x30 image with 3 feature maps (channels) with 5 kernels of size 5x5 produces an output with how many feature maps?",
+    "options": [
+      "5 feature maps",
+      "25 feature maps",
+      "3 feature maps",
+      "15 feature maps"
+    ],
+    "correct_index": 0,
+    "explanation": "The number of output feature maps is exactly equal to the number of convolutional kernels applied (5 kernels = 5 output feature maps), regardless of the input channel count."
+  },
+  {
+    "id": "docx_q_92",
+    "unit": 1,
+    "question": "You have a grayscale (one-channel) image with a resolution of 100x100. You apply 3 kernels of size 5x5 (no padding). This will produce which of the following output shapes?",
+    "options": [
+      "Five output feature maps of size 95x95 each.",
+      "Three output feature maps of size 100x100 each.",
+      "three output feature maps with a resolution of 96x96 each.",
+      "One output feature map of size 96x96."
+    ],
+    "correct_index": 2,
+    "explanation": "The 3 kernels produce 3 output channels. The resolution without padding is 100 - 5 + 1 = 96, producing 96x96 resolution."
+  },
+  {
+    "id": "docx_q_146",
+    "unit": 5,
+    "question": "Why are generative models of interest in the area of drug discovery?",
+    "options": [
+      "Generative models can design new molecules because the chemical drug universe is too vast to screen exhaustively.",
+      "They automatically synthesize chemical compounds in a wet-lab.",
+      "They reduce the cost of drug discovery to zero.",
+      "They are used to predict casp GDT scores of protein target receptors."
+    ],
+    "correct_index": 0,
+    "explanation": "The space of drug-like molecules is estimated at 10^60 compounds. Generative models (VAEs, GANs, RL) help search this vast chemical universe by generating candidates with desired properties."
+  },
+  {
+    "id": "docx_q_56",
+    "unit": 1,
+    "question": "In deep learning, what is the main application of gradient descent?",
+    "options": [
+      "To define the architecture of the neural network.",
+      "To perform data augmentation on tabular features.",
+      "It can be used to update parameters/weights of neural network models.",
+      "To calculate the classification labels of the test dataset."
+    ],
+    "correct_index": 2,
+    "explanation": "Gradient descent is the optimization engine used in backpropagation to compute and apply parameter updates to weights and biases, minimizing the loss."
+  },
+  {
+    "id": "docx_q_135",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where you have a dictionary size of 7500, an embedding size of 300 and a hidden representation size of 400. What is the output size of the language model when considering a single input word?",
+    "options": [
+      "300",
+      "400",
+      "2,250,000",
+      "7500"
+    ],
+    "correct_index": 3,
+    "explanation": "The output size of a language model is always equal to its vocabulary (dictionary) size, which is 7500."
+  },
+  {
+    "id": "docx_q_80",
+    "unit": 1,
+    "question": "Why is translation invariance a desirable feature in visual models?",
+    "options": [
+      "It is necessary for processing sequence data in LSTMs.",
+      "It is a desirable feature for models that classify the content of natural images like photos of cats and dogs.",
+      "It restricts the model to learning only linear decision boundaries.",
+      "It allows the model to process 3D molecular conformations."
+    ],
+    "correct_index": 1,
+    "explanation": "A cat is a cat whether it is in the top-left or bottom-right corner of an image. A model with translation invariance can identify the object regardless of its position."
+  },
+  {
+    "id": "docx_q_57",
+    "unit": 1,
+    "question": "What is a computational graph as used in framework backends like PyTorch?",
+    "options": [
+      "A bar chart representing model accuracy over epochs.",
+      "It represents a mathematical function as a graph.",
+      "A tree representing hierarchical clustering divisions.",
+      "A plot of the weights of the convolutional kernels."
+    ],
+    "correct_index": 1,
+    "explanation": "A computational graph is a directed graph where nodes represent mathematical operations (addition, multiplication) or variables (tensors), and edges represent data flow."
+  },
+  {
+    "id": "docx_q_153",
+    "unit": 5,
+    "question": "Which of the following is correct regarding a molecular graph representation?",
+    "options": [
+      "It is a directed graph that fully represents the 3D conformation of the molecule.",
+      "It is an undirected graph with labeled nodes (atoms) and labeled edges (bonds).",
+      "It is only used to represent protein amino acid sequences.",
+      "It represents molecules as a continuous grid of floating-point numbers."
+    ],
+    "correct_index": 1,
+    "explanation": "A molecular graph represents a molecule's topology where vertices are labeled with atom types (C, N, O) and edges are labeled with bond types (single, double)."
+  },
+  {
+    "id": "docx_q_13",
+    "unit": 1,
+    "question": "What is a primary benefit of using data augmentation in machine learning?",
+    "options": [
+      "It guarantees that the training loss will immediately reach zero.",
+      "Data augmentation can help prevent overfitting.",
+      "It reduces the size of the training dataset to save disk space.",
+      "It changes the target labels of the samples to create new classes."
+    ],
+    "correct_index": 1,
+    "explanation": "Data augmentation artificially increases the diversity of the training set by applying transformations, which reduces overfitting and improves generalization."
+  },
+  {
+    "id": "docx_q_31",
+    "unit": 1,
+    "question": "Which of the following values can a regression target take?",
+    "options": [
+      "Only binary boolean states.",
+      "Only discrete labels like 'cat' or 'dog'.",
+      "Only positive prime numbers.",
+      "the target value can be a floating-point value."
+    ],
+    "correct_index": 3,
+    "explanation": "Regression target variables are continuous real numbers, which are naturally represented as floating-point values."
+  },
+  {
+    "id": "docx_q_71",
+    "unit": 1,
+    "question": "What is correct about the derivative of the ReLU activation function?",
+    "options": [
+      "It is continuous and differentiable everywhere.",
+      "The derivate is easy to compute.",
+      "It vanishes to zero for large positive inputs.",
+      "It requires computing a tanh function."
+    ],
+    "correct_index": 1,
+    "explanation": "The derivative of ReLU is extremely simple: 1 for x > 0 and 0 for x < 0. This makes it trivial to compute during backpropagation."
+  },
+  {
+    "id": "docx_q_14",
+    "unit": 1,
+    "question": "Which of the following is an important caveat when applying data augmentation?",
+    "options": [
+      "Data augmentation can only be applied to continuous tabular datasets.",
+      "Augmentation guarantees that the validation error will equal the training error.",
+      "Not every augmentation technique is useful in every scenario.",
+      "Data augmentation must be applied to the test dataset to be effective."
+    ],
+    "correct_index": 2,
+    "explanation": "Augmentations must preserve the semantics of the task. E.g., flipping a digit '6' horizontally can turn it into another character, changing its meaning. Thus, techniques must be selected carefully depending on the scenario."
+  },
+  {
+    "id": "docx_q_43",
+    "unit": 1,
+    "question": "Given the derivative of the logistic/sigmoid function σ'(x) and the computation: y = σ'(500) * σ'(-200), which of the following is correct?",
+    "options": [
+      "y is in the range (0.25, 0.5].",
+      "y is close to 0.",
+      "y is a negative value.",
+      "y is exactly 0.5."
+    ],
+    "correct_index": 1,
+    "explanation": "For very large positive (500) or negative (-200) inputs, the sigmoid function saturates, meaning its derivative σ'(z) approaches 0. Thus, their product y is positive but close to 0."
+  },
+  {
+    "id": "docx_q_84",
+    "unit": 1,
+    "question": "What is a computational benefit of increasing the stride in a convolutional layer?",
+    "options": [
+      "It forces the use of batch normalization.",
+      "It turns non-convex losses into convex ones.",
+      "It increases the number of parameters.",
+      "Increasing the stride decreases the computational cost."
+    ],
+    "correct_index": 3,
+    "explanation": "A larger stride means the kernel is applied at fewer spatial positions. This reduces the number of operations, saving computation."
+  },
+  {
+    "id": "docx_q_170",
+    "unit": 6,
+    "question": "Assume an RL agent moves on a 10x10 grid. Actions are up, down, left, right. Off-grid penalty is -5. Move actions give 0 reward. Target gives +20. Which of the following is true?",
+    "options": [
+      "An optimal policy will give a final reward of 20, and there are policies that never reach the target.",
+      "Every target-reaching policy is optimal.",
+      "The discount factor gamma must be set to 0 to find the optimal path.",
+      "The optimal policy will yield a final reward of +15."
+    ],
+    "correct_index": 0,
+    "explanation": "An optimal policy avoids the boundary penalty and reaches the target, yielding +20. A bad policy might wander indefinitely (never reaching the target), or hit boundaries (reward < 20)."
+  },
+  {
+    "id": "docx_q_15",
+    "unit": 1,
+    "question": "How does data augmentation influence the training behavior of deep neural networks?",
+    "options": [
+      "It forces the training error to decrease faster than optimization.",
+      "Data augmentation might reduce overfitting.",
+      "It guarantees that the test loss is identical to the training loss.",
+      "It restricts the model to learning only linear features."
+    ],
+    "correct_index": 1,
+    "explanation": "By presenting the network with slightly modified versions of the training samples (e.g. rotated, cropped), the model is discouraged from memorizing noise, reducing overfitting."
+  },
+  {
+    "id": "docx_q_38",
+    "unit": 1,
+    "question": "Why is it a good idea to have a separate test set in addition to a training set?",
+    "options": [
+      "To train the weights of the hidden layer in parallel.",
+      "To double the number of samples available for optimization.",
+      "It allows to get a better estimate of the generalization error.",
+      "To convert non-convex error functions into convex ones."
+    ],
+    "correct_index": 2,
+    "explanation": "Evaluating the model on a separate test set (which was not used during training) provides an unbiased estimate of how the model performs on new, unseen data."
+  },
+  {
+    "id": "docx_q_66",
+    "unit": 1,
+    "question": "Which of the following is a typical activation function used in neural networks?",
+    "options": [
+      "Mean Squared Error.",
+      "Sigmoid (or Tanh, ReLU, SELU, Leaky ReLU).",
+      "K-means dissimilarity.",
+      "Principal Component Projection."
+    ],
+    "correct_index": 1,
+    "explanation": "Sigmoid, Tanh, ReLU, Leaky ReLU, and SELU are classic activation functions. Sigmoid is often used in the output layer for binary classification."
+  },
+  {
+    "id": "docx_q_150",
+    "unit": 5,
+    "question": "What characterizes High-Throughput Screening (HTS) in drug discovery?",
+    "options": [
+      "It is an in-silico computational screening of virtual molecular databases.",
+      "It uses neural networks to predict QSAR properties.",
+      "It is a physical, automated laboratory screening process that is expensive and time-consuming.",
+      "It folds amino acid sequences into 3D structures."
+    ],
+    "correct_index": 2,
+    "explanation": "HTS uses automated robotics to physically test thousands of physical compounds against biological targets, which is resource-intensive compared to computational methods."
+  },
+  {
+    "id": "docx_q_127",
+    "unit": 4,
+    "question": "What is the goal of language models?",
+    "options": [
+      "To compute cosine similarities between word embeddings.",
+      "To classify sentences into distinct syntactic categories.",
+      "To predict probabilities of unknown elements (e.g. word, sub-word) based on context.",
+      "To parse sentences into dependency trees."
+    ],
+    "correct_index": 2,
+    "explanation": "The mathematical goal of language modeling is to assign a probability to a sequence of words, which is equivalent to predicting the probability of the next element (word/character) given the context."
+  },
+  {
+    "id": "docx_q_132",
+    "unit": 4,
+    "question": "Assume a language modeling scenario where you have a dictionary size of 12000, an embedding size of 350 and a hidden representation size of 300. How many parameters does the decoder matrix have?",
+    "options": [
+      "4,200,000 parameters.",
+      "3,600,000 parameters (12000 * 300).",
+      "12,000 parameters.",
+      "3,500,000 parameters."
+    ],
+    "correct_index": 1,
+    "explanation": "The decoder projects the hidden state (size 300) back to the dictionary vocabulary size (12000). The weight matrix shape is (300, 12000) or (12000, 300), which has 12000 * 300 = 3,600,000 parameters."
+  },
+  {
+    "id": "gap_u1_kmeans_k",
+    "unit": 1,
+    "question": "Which parameter must be pre-specified by the user before running the k-Means algorithm?",
+    "options": [
+      "The neighborhood distance radius (epsilon).",
+      "The number of clusters, k.",
+      "The covariance matrix structure.",
+      "The minimum density sample threshold."
+    ],
+    "correct_index": 1,
+    "explanation": "Unlike DBSCAN, k-Means is non-parametric but requires the user to define the exact number of clusters, k, before optimization begins."
+  },
+  {
+    "id": "gap_u2_residual_shortcut",
+    "unit": 2,
+    "question": "How do residual connections (identity shortcuts) in ResNets help in training extremely deep neural networks?",
+    "options": [
+      "They replace convolutional kernels with simpler pooling operations.",
+      "They normalize hidden activations by scaling weights by 1/(1-p).",
+      "They enforce a non-convex bowl shape on the loss landscape.",
+      "They formulate an identity path (y = F(x) + x), allowing gradients to flow back directly without being degraded by weight multiplication."
+    ],
+    "correct_index": 3,
+    "explanation": "Residual connections bypass layers by adding the input directly to the output. Mathematically, this creates a shortcut where gradients can flow unimpeded backward during backpropagation, resolving vanishing gradients."
+  },
+  {
+    "id": "gap_u3_rnn_output_equation",
+    "unit": 3,
+    "question": "How is the prediction/output y_t typically computed from the hidden state h_t in a standard RNN?",
+    "options": [
+      "y_t = h_t + x_t",
+      "y_t = sum_{i=1}^t h_i",
+      "y_t = softmax(W_hy * h_t + b_y) or similar linear projection with activation.",
+      "y_t = tanh(W_hh * h_{t-1} + b_y)"
+    ],
+    "correct_index": 2,
+    "explanation": "The output y_t at timestep t is calculated by multiplying the hidden state h_t by an output weight matrix W_hy, adding bias b_y, and applying an activation (like softmax for classification)."
+  },
+  {
+    "id": "gap_u1_dendrogram",
+    "unit": 1,
+    "question": "In hierarchical clustering, what does a dendrogram represent?",
+    "options": [
+      "A probability distribution function fitted using expectations.",
+      "A scatter plot of principal component projection variances.",
+      "A tree-like diagram showing the sequence and dissimilarity heights of merges or splits.",
+      "A map of core, border, and noise densities."
+    ],
+    "correct_index": 2,
+    "explanation": "A dendrogram is a tree diagram that illustrates the hierarchy of merges. The vertical axis represents the distance or dissimilarity at which clusters are joined."
+  },
+  {
+    "id": "gap_u2_batchnorm_testing",
+    "unit": 2,
+    "question": "How does Batch Normalization behave during the evaluation/testing phase?",
+    "options": [
+      "It disables normalization entirely to prevent loss of information.",
+      "It calculates the mean and variance of the test mini-batch dynamically.",
+      "It averages predictions from 2^N different subnetworks.",
+      "It uses precomputed running/average mean and variance statistics gathered from the training set."
+    ],
+    "correct_index": 3,
+    "explanation": "At test time, the network is evaluated on individual samples or arbitrary test batches. BatchNorm therefore uses the global running mean and variance computed during training, rather than the statistics of the test batch."
+  },
+  {
+    "id": "gap_u1_hierarchical_concept",
+    "unit": 1,
+    "question": "How does bottom-up agglomerative hierarchical clustering operate?",
+    "options": [
+      "It starts with each individual sample as its own cluster and progressively merges the closest pairs.",
+      "It iteratively updates centroids using expectations of a normal distribution.",
+      "It starts with one giant cluster containing all samples and recursively splits them.",
+      "It labels points as core, border, or noise based on density thresholds."
+    ],
+    "correct_index": 0,
+    "explanation": "Agglomerative clustering is a bottom-up approach where each data point starts as a single cluster, and at each iteration, the two most similar/closest clusters are merged."
+  },
+  {
+    "id": "gap_u6_bellman_equation",
+    "unit": 6,
+    "question": "What is the mathematical formulation of the Bellman Optimality Equation for the action-value function Q*(s, a)?",
+    "options": [
+      "Q*(s, a) = R(s, a) + gamma * sum_{s'} P(s' | s, a) * max_{a'} Q*(s', a')",
+      "Q*(s, a) = R(s, a) - alpha * max_{a'} Q*(s', a')",
+      "Q*(s, a) = (1 - alpha) * Q*(s, a) + alpha * r",
+      "Q*(s, a) = sum_{t=0}^infinity gamma^t * r_t"
+    ],
+    "correct_index": 0,
+    "explanation": "The Bellman Optimality Equation expresses that the value of an optimal state-action pair is the immediate reward R(s,a) plus the discounted expected optimal value of the next state s' over the transition distribution."
+  },
+  {
+    "id": "gap_u1_kmeans_update",
+    "unit": 1,
+    "question": "In the Update Step of the k-Means clustering algorithm, how are the new centroids calculated?",
+    "options": [
+      "Each centroid is recalculated as the mean of all data points assigned to that cluster.",
+      "Each centroid is set to the median of the closest points.",
+      "Each centroid is moved in the direction of the negative gradient of the loss.",
+      "Each centroid is updated using expectation-maximization probability vectors."
+    ],
+    "correct_index": 0,
+    "explanation": "During the update step, each centroid's coordinates are recomputed as the arithmetic mean of all data points that were assigned to that cluster in the assignment step."
+  },
+  {
+    "id": "gap_u5_hts_vs_screening",
+    "unit": 5,
+    "question": "What is the main distinction between High-Throughput Screening (HTS) and Virtual Screening (VS) in drug discovery?",
+    "options": [
+      "HTS is automated physical wet-lab testing of compounds, while VS is in-silico computational simulation to predict binding.",
+      "HTS is cheap and fast, while VS is extremely slow and expensive.",
+      "HTS is used for proteins, while VS is only used for small molecules.",
+      "HTS is a supervised ML model, while VS is unsupervised."
+    ],
+    "correct_index": 0,
+    "explanation": "HTS uses automated robotics to physically test thousands of chemical compounds in a laboratory. VS uses computational models (like trained QSAR networks) to screen virtual databases of molecules mathematically."
+  },
+  {
+    "id": "gap_u2_lr_schedule",
+    "unit": 2,
+    "question": "In neural network optimization, why is a learning rate scheduler used?",
+    "options": [
+      "To compute gradients in parallel across different GPUs.",
+      "To synchronize weight updates between the forward and backward passes.",
+      "To use a large learning rate at the start for exploration, and decrease it over time for exploitation/fine convergence.",
+      "To keep the step size constant throughout all training epochs."
+    ],
+    "correct_index": 2,
+    "explanation": "At the start of training, a larger learning rate is useful to explore the loss landscape. As training progresses and approaches a minimum, decreasing the learning rate (annealing) prevents overshoot and helps convergence."
+  },
+  {
+    "id": "gap_u4_multi_head_attention",
+    "unit": 4,
+    "question": "What is the primary function of Multi-Head Attention in a Transformer layer?",
+    "options": [
+      "It projects Queries, Keys, and Values into multiple subspaces, allowing the model to attend to information from different representation positions in parallel.",
+      "It averages predictions from multiple independent Transformer models.",
+      "It replaces the feed-forward networks to reduce parameters.",
+      "It computes attention weights sequentially to save memory."
+    ],
+    "correct_index": 0,
+    "explanation": "Multi-Head Attention splits queries, keys, and values into multiple subsets, performs self-attention on each in parallel, and concatenates the results, allowing the model to focus on different aspects of context."
+  },
+  {
+    "id": "gap_u1_gmm_concept",
+    "unit": 1,
+    "question": "What is the core assumption of Gaussian Mixture Models (GMM) in cluster analysis?",
+    "options": [
+      "Data is distributed along concentric circular manifolds.",
+      "The data contains no random noise or variance.",
+      "Data is generated from a mixture of several Gaussian (normal) distributions, each with its own mean and covariance.",
+      "Data clusters can be separated by a single linear hyperplane."
+    ],
+    "correct_index": 2,
+    "explanation": "GMM is a parametric clustering method that models the data as a combination of multiple normal/Gaussian distributions, representing clusters with mean vectors and covariance matrices."
+  },
+  {
+    "id": "gap_u3_rnn_types_one_to_many",
+    "unit": 3,
+    "question": "Which task is modeled using a one-to-many Recurrent Neural Network (RNN)?",
+    "options": [
+      "Part-of-Speech Tagging.",
+      "Time Series Forecasting with multiple inputs.",
+      "Sentiment Classification.",
+      "Image Captioning (taking a single image and outputting a sequence of words)."
+    ],
+    "correct_index": 3,
+    "explanation": "A one-to-many RNN takes a single input (e.g., an image representation) and generates a sequence of outputs over time (e.g., a sentence describing that image)."
+  },
+  {
+    "id": "gap_u1_kmeans_init",
+    "unit": 1,
+    "question": "What is the initial step in the standard k-Means clustering algorithm?",
+    "options": [
+      "Initialize k cluster centroids, usually at random positions.",
+      "Compute the covariance matrix of the data points.",
+      "Calculate the dissimilarity dendrogram of the samples.",
+      "Assign all points to a single dense cluster."
+    ],
+    "correct_index": 0,
+    "explanation": "k-Means begins by initializing k cluster centroids, which are typically chosen randomly from the data points or at random coordinates."
+  },
+  {
+    "id": "gap_u2_transfer_learning",
+    "unit": 2,
+    "question": "In transfer learning, why are early layers of a pre-trained network typically frozen?",
+    "options": [
+      "To prevent the vanishing gradient problem in the output classifier layer.",
+      "Because they are optimized using Monte Carlo tree simulations.",
+      "Because early layers contain the task-specific fully-connected weights.",
+      "Because early convolutional layers extract generic features (like edges and textures) that are useful across different tasks."
+    ],
+    "correct_index": 3,
+    "explanation": "Early layers of convolutional networks learn to extract generic visual features (edges, textures, shapes). When transferring to a new task, we reuse these features and focus on training later, task-specific layers."
+  },
+  {
+    "id": "gap_u1_kmeans_assignment",
+    "unit": 1,
+    "question": "During the Assignment Step of the k-Means algorithm, how are data points assigned to clusters?",
+    "options": [
+      "Points are assigned based on density connectivity indices (epsilon).",
+      "Points are assigned to centroids using agglomerative link thresholds.",
+      "Points are assigned to the centroid that maximizes probability in a Gaussian distribution.",
+      "Points are assigned to the nearest centroid, typically measured using Euclidean distance."
+    ],
+    "correct_index": 3,
+    "explanation": "In k-Means, the assignment step pairs each data point with the closest centroid, which is usually determined by Euclidean distance."
+  },
+  {
+    "id": "gap_u6_dynamic_programming",
+    "unit": 6,
+    "question": "In reinforcement learning context, what is a key limitation of tabular dynamic programming methods (like Value Iteration or Policy Iteration)?",
+    "options": [
+      "They require complete knowledge of the environment's transition probabilities P(s' | s, a) and reward functions, which are often unknown.",
+      "They are sample-based and suffer from high variance.",
+      "They can only solve reinforcement learning tasks with continuous action spaces.",
+      "They cannot use discount factors gamma."
+    ],
+    "correct_index": 0,
+    "explanation": "Dynamic programming methods require the complete model of the environment (transition dynamics P and reward function R) to compute values. Model-free RL (like Q-learning) is used when these dynamics are unknown."
+  },
+  {
+    "id": "gap_u2_l1_regularization",
+    "unit": 2,
+    "question": "What is the mathematical formulation and main characteristic of L1 regularization (Lasso)?",
+    "options": [
+      "It randomly deactivates nodes during the backward pass of training.",
+      "It adds the sum of squared weights, pulling weights to zero but never exactly to zero.",
+      "It adds the sum of absolute weights, which drives some weights to be exactly zero, creating sparse model representations.",
+      "It normalizes layer inputs by subtracting the mini-batch mean."
+    ],
+    "correct_index": 2,
+    "explanation": "L1 regularization adds a penalty term proportional to the sum of the absolute values of the weights (lambda * sum(|w_i|)). This penalty drives non-essential weights to exactly zero, producing sparse models."
+  },
+  {
+    "id": "gap_u1_dendrogram_cut",
+    "unit": 1,
+    "question": "How do you choose the final number of clusters from a hierarchical clustering dendrogram?",
+    "options": [
+      "By choosing the number of leaf nodes containing more than 50% of the sample density.",
+      "By computing the derivative of the loss function and finding the zero crossing.",
+      "By 'cutting' the dendrogram horizontally at a chosen height (dissimilarity threshold).",
+      "By running expectation-maximization to find the saddle point."
+    ],
+    "correct_index": 2,
+    "explanation": "Cutting a dendrogram horizontally at a specific height divides the tree into distinct branches, where each branch corresponds to a final cluster."
+  },
+  {
+    "id": "gap_u1_gmm_soft",
+    "unit": 1,
+    "question": "How does Gaussian Mixture Models (GMM) differ from k-Means in terms of sample assignment?",
+    "options": [
+      "GMM uses soft clustering, assigning each point a probability (membership density) of belonging to each cluster.",
+      "k-Means uses soft clustering, while GMM assigns each sample to exactly one cluster.",
+      "GMM requires all samples to lie on a spherical manifold.",
+      "k-Means automatically identifies core and noise points, whereas GMM does not."
+    ],
+    "correct_index": 0,
+    "explanation": "While k-Means performs 'hard' clustering (each point belongs to exactly one cluster), GMM assigns a probability vector to each point, representing its likelihood of belonging to each Gaussian component."
+  },
+  {
+    "id": "gap_u5_target_ligand",
+    "unit": 5,
+    "question": "In the lock-and-key model of molecular drug action, what do the terms 'target' and 'ligand' represent?",
+    "options": [
+      "The target is the SMILES sequence, and the ligand is the 3D conformation.",
+      "The target is HTS, and the ligand is virtual screening.",
+      "The ligand is the disease cell, and the target is the healthy cell.",
+      "The target is the host protein/receptor (the lock), and the ligand is the small drug molecule (the key) that binds to it."
+    ],
+    "correct_index": 3,
+    "explanation": "The target is typically a biomolecule (like a protein or enzyme) whose function we want to modify. The ligand is the small drug molecule that binds to the target's active site to trigger or inhibit a biological response."
+  },
+  {
+    "id": "gap_u5_molecular_fingerprints",
+    "unit": 5,
+    "question": "In QSAR modeling, what are circular molecular fingerprints (such as Morgan fingerprints or ECFP)?",
+    "options": [
+      "Fixed-size binary vectors where each bit denotes the presence or absence of specific circular atom neighborhoods.",
+      "Images of molecules captured during high-throughput screenings.",
+      "String sequences generated by converting graphs into text.",
+      "3D coordinates representing the spatial folding of the molecule."
+    ],
+    "correct_index": 0,
+    "explanation": "Morgan fingerprints (Extended-Connectivity Fingerprints / ECFP) represent molecular structure by scanning circular neighborhoods of atoms up to a specific radius, hashing them into a fixed-size binary or count vector."
+  },
+  {
+    "id": "gap_u1_gmm_em",
+    "unit": 1,
+    "question": "Which optimization algorithm is standard for fitting the parameters (means, covariances, and weights) of a Gaussian Mixture Model (GMM)?",
+    "options": [
+      "Backpropagation through time (BPTT).",
+      "The Expectation-Maximization (EM) algorithm.",
+      "Stochastic Gradient Descent (SGD).",
+      "Monte Carlo Tree Search (MCTS)."
+    ],
+    "correct_index": 1,
+    "explanation": "GMM parameters are optimized using the Expectation-Maximization (EM) algorithm, which alternates between estimating component memberships (E-step) and updating Gaussian parameters (M-step)."
+  },
+  {
+    "id": "gap_u2_auxiliary_classifiers",
+    "unit": 2,
+    "question": "What is the purpose of using auxiliary classifiers during the training of very deep networks (such as GoogLeNet)?",
+    "options": [
+      "To replace residual identity shortcut connections.",
+      "To inject auxiliary gradients directly into intermediate layers, mitigating the vanishing gradient problem.",
+      "To normalize activation values across different mini-batches.",
+      "To calculate the test error rate on-the-fly."
+    ],
+    "correct_index": 1,
+    "explanation": "Auxiliary classifiers are auxiliary output layers added to intermediate hidden layers. During training, their loss is computed, and gradients are injected directly back, helping update earlier layers that would otherwise suffer from vanishing gradients."
+  },
+  {
+    "id": "gap_u3_rnn_types_many_to_one",
+    "unit": 3,
+    "question": "Which task is typically modeled using a many-to-one Recurrent Neural Network (RNN)?",
+    "options": [
+      "Image Captioning (taking an image and outputting a sentence).",
+      "Autoregressive Text Generation.",
+      "Sentiment Classification (taking a sentence and outputting a single sentiment label).",
+      "Machine Translation (taking a sentence and outputting a translated sentence)."
+    ],
+    "correct_index": 2,
+    "explanation": "Many-to-one RNNs process a sequence of inputs (e.g., words in a sentence) and output a single prediction at the end (e.g., positive vs. negative sentiment class label)."
+  },
+  {
+    "id": "gap_u1_kmeans_shape",
+    "unit": 1,
+    "question": "Which of the following is a key limitation of the k-Means clustering algorithm regarding cluster shapes?",
+    "options": [
+      "It is restricted to binary features and cannot handle continuous dimensions.",
+      "It automatically filters out noise points as separate core regions.",
+      "It can only discover clusters of highly irregular, concentric ring shapes.",
+      "It assumes clusters are spherical and of similar size, performing poorly on non-spherical or overlapping data."
+    ],
+    "correct_index": 3,
+    "explanation": "k-Means uses Euclidean distance from centroids, which implicitly assumes that clusters are spherical and of similar scale/density. It struggles with arbitrary shapes (like concentric circles)."
+  },
+  {
+    "id": "gap_u6_epsilon_decay",
+    "unit": 6,
+    "question": "Why is the parameter epsilon (in epsilon-greedy selection) often decayed (reduced) over the course of training?",
+    "options": [
+      "To increase the discount factor gamma over time.",
+      "To increase the learning rate as Q-values converge.",
+      "To prevent the policy from ever choosing greedy actions.",
+      "To shift the agent from high exploration (random moves) at the start to high exploitation (greedy moves) as it learns."
+    ],
+    "correct_index": 3,
+    "explanation": "Decaying epsilon reduces exploration over time. Early on, a high epsilon forces the agent to discover the environment. Later, a low epsilon allows it to exploit the learned optimal policy and maximize rewards."
+  },
+  {
+    "id": "gap_u4_word2vec_cbow",
+    "unit": 4,
+    "question": "What is the structural difference between CBOW and Skip-gram in Word2Vec?",
+    "options": [
+      "CBOW maps words to sparse binary vectors, while Skip-gram maps them to continuous probability distributions.",
+      "CBOW is used for translation, while Skip-gram is used for clustering.",
+      "CBOW predicts a target word given context words, while Skip-gram predicts context words given a target word.",
+      "CBOW uses self-attention, while Skip-gram uses recurrent layers."
+    ],
+    "correct_index": 2,
+    "explanation": "CBOW (Continuous Bag of Words) takes context words as input and predicts the target center word. Skip-gram takes the target center word as input and predicts the surrounding context words."
+  },
+  {
+    "id": "gap_u2_batchnorm_training",
+    "unit": 2,
+    "question": "How does Batch Normalization operate during the training phase of a deep neural network?",
+    "options": [
+      "It normalizes layers using precomputed running statistics from the validation set.",
+      "It randomly drops out mini-batches to prevent co-adaptation of features.",
+      "It normalizes the activations of each mini-batch by its own mean and standard deviation, adding small noise that acts as regularizer.",
+      "It rescales the loss function dynamically using auxiliary classifiers."
+    ],
+    "correct_index": 2,
+    "explanation": "During training, BatchNorm normalizes activations based on the mean and variance computed from the current mini-batch. The variance between mini-batches introduces a form of noise, which acts as a regularizer."
+  },
+  {
+    "id": "gap_u3_rnn_equation",
+    "unit": 3,
+    "question": "What is the standard hidden state recurrence equation for a standard recurrent neural network (RNN) at timestep t?",
+    "options": [
+      "h_t = h_{t-1} + x_t",
+      "h_t = max(0, W_xh * x_t + b_h)",
+      "h_t = tanh(W_hh * h_{t-1} + W_xh * x_t + b_h)",
+      "h_t = W_hh * h_{t-1} * sigmoid(x_t)"
+    ],
+    "correct_index": 2,
+    "explanation": "The standard RNN hidden state h_t is updated by combining the previous hidden state h_{t-1} and current input x_t via weight matrices W_hh and W_xh, followed by a non-linear activation (typically tanh)."
+  },
+  {
+    "id": "gap_u4_attention_complexity",
+    "unit": 4,
+    "question": "What is the computational complexity of the self-attention mechanism in Transformers with respect to sequence length T?",
+    "options": [
+      "Quadratic complexity, O(T^2).",
+      "Exponential complexity, O(2^T).",
+      "Logarithmic complexity, O(log T).",
+      "Linear complexity, O(T)."
+    ],
+    "correct_index": 0,
+    "explanation": "Self-attention requires computing similarity scores between every pair of elements in the sequence, which takes O(T^2) operations, where T is the sequence length."
+  }
+]

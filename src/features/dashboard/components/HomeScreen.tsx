@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Search, Plus, BookOpen, Star, Compass, UserCheck } from "lucide-react";
+import Link from "next/link";
 import HeaderDock from "@/components/HeaderDock";
 import GlobalFooter from "@/components/GlobalFooter";
 
